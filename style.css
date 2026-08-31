@@ -1,0 +1,1998 @@
+/* =========================================
+   BASIC PAGE SETTINGS
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    overflow-x: hidden;
+
+    background-color: #FFFFFF;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.site-header {
+    width: 100%;
+    padding: 0;
+
+    background-color: transparent;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Rounded rectangle */
+.header-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background-color: #FFF8E7;
+
+    border-radius: 8px;
+
+    padding: 0px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    box-sizing: border-box;
+}
+
+/* ========================================
+   LOGO
+======================================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.logo img {
+    width: 110px;
+    height: auto;
+
+    display: block;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-left: auto;
+}
+
+.main-navigation a {
+    text-decoration: none;
+
+    color: #222222;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+
+    transition: color 0.3s ease;
+}
+
+.main-navigation a:hover {
+    color: #C62828;
+}
+
+
+/* ========================================
+   LOGIN / REGISTER
+======================================== */
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding:10px 20px;
+
+    border-radius: 7px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+
+/* LOGIN */
+
+.login-btn {
+    color: #3F6B3F;
+
+    background-color: transparent;
+
+    border: 2px solid #3F6B3F;
+}
+
+.login-btn:hover {
+    background-color: #3F6B3F;
+    color: #FFF8E7;
+}
+
+
+/* REGISTER */
+
+.register-btn {
+    color: #FFFFFF;
+
+    background-color: #C62828;
+
+    border: 2px solid #C62828;
+}
+
+.register-btn:hover {
+    background-color: #A61E1E;
+    border-color: #A61E1E;
+}
+
+
+/* ICONS */
+
+.login-icon,
+.register-icon {
+    font-size: 15px;
+}
+
+
+/* ========================================
+   RESPONSIVE HEADER
+======================================== */
+
+@media (max-width: 900px) {
+
+    .header-container {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .main-navigation {
+        order: 3;
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 20px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .header-container {
+        width: 94%;
+        padding: 12px 16px;
+    }
+
+    .logo img {
+        width: 85px;
+    }
+
+    .main-navigation {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .main-navigation a {
+        font-size: 13px;
+    }
+
+    .auth-buttons {
+        gap: 5px;
+    }
+
+    .btn {
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+
+}
+
+/* =========================================
+   HERO / BANNER
+========================================= */
+
+.hero {
+    width: 100%;
+    max-width: 1200px;
+
+    height: 430px;
+
+    margin: 0 auto;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================================
+   BANNER IMAGE
+========================================= */
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* =========================================
+   ORDER NOW BUTTON
+========================================= */
+
+.order-now-button {
+    position: absolute;
+
+    left: 50%;
+    bottom: 28px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    width: 315px;
+    height: 78px;
+
+    background-color: #ffffff;
+    color: #000000;
+
+    border-radius: 20px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================================
+   THICK ARROW
+========================================= */
+
+.order-now-button .arrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 30px;
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.order-now-button:hover {
+    background-color: #C62828;
+
+    transform: translateX(-50%) translateY(-2px);
+}
+
+
+/* =========================================
+   ABOUT LA MIA PIZZERIA
+========================================= */
+
+.about-section {
+    width: 100%;
+    max-width: none;
+
+    height: 400px;
+
+    margin: 0;
+
+    background-image: url("images/about-la-mia-pizzeria-backdesign.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   ABOUT CONTENT
+========================================= */
+
+.about-content {
+    width: 88%;
+    max-width: 900px;
+
+    text-align: center;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   ABOUT HEADING
+========================================= */
+
+.about-content h2 {
+    margin: 0 0 12px;
+
+    color: #222222;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   ABOUT SUBTITLE
+========================================= */
+
+.about-subtitle {
+    margin-bottom: 25px;
+
+    color: #E8752A;
+
+    font-family: cursive;
+    font-size: 24px;
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+.about-subtitle span {
+    font-size: 20px;
+}
+
+
+/* =========================================
+   ABOUT PARAGRAPH
+========================================= */
+
+.about-content p {
+    width: 86%;
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    color: #222222;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.45;
+
+    text-align: center;
+}
+
+
+
+/* =========================================
+   POPULAR PIZZA SECTION
+========================================= */
+
+.popular-pizza-section {
+    width: 100%;
+    max-width: none;
+
+    min-height: 1000px;
+
+    margin: 0;
+
+    background-image: url("images/popular-pizza-backdesign.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 50px 0;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   POPULAR PIZZA CONTENT
+========================================= */
+
+.popular-pizza-content {
+    position: relative;
+    z-index: 2;
+
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    text-align: center;
+    padding-top: 15px;
+}
+
+/* =========================================
+   POPULAR PIZZA HEADING
+========================================= */
+
+.popular-pizza-content h2 {
+    margin: 0 0 8px;
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   POPULAR PIZZA SUBTITLE
+========================================= */
+
+.popular-pizza-subtitle {
+    position: relative;
+    z-index: 3;
+
+    margin-bottom: 35px;
+
+    color: #C62828;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================
+   9 PIZZA CARDS
+========================================= */
+
+.pizza-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    column-gap: px;
+    row-gap: 50px;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 40px auto 0;
+
+    justify-items: center;
+}
+
+
+/* =========================================
+   INDIVIDUAL PIZZA CARD
+========================================= */
+
+.pizza-card {
+    width: 250px;
+
+    background-color: #FFFFFF;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.20);
+
+    text-align: center;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================================
+   PIZZA IMAGE
+========================================= */
+
+.pizza-card img {
+    width: 100%;
+    height: 170px;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   PIZZA NAME / WHITE AREA
+========================================= */
+
+.pizza-name {
+    width: 100%;
+    height: 50px;
+
+    background-color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    color: #222222;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   CARD HOVER
+========================================= */
+
+.pizza-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* =========================================
+   RESPONSIVE PIZZA GRID
+========================================= */
+
+@media (max-width: 900px) {
+
+    .pizza-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        max-width: 550px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .pizza-grid {
+        grid-template-columns: 1fr;
+
+        max-width: 300px;
+    }
+
+    .pizza-card {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   LA MIA PIZZERIA TIMELINE
+========================================= */
+
+.timeline-section {
+    width: 100%;
+
+    background-color: #FFF8E7;
+
+    padding: 35px 20px 0px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   TIMELINE CONTENT
+========================================= */
+
+.timeline-content {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 35px auto 0;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   TIMELINE TITLE
+========================================= */
+
+.timeline-content > h2 {
+    margin: 0 0 3px;
+
+    color: #C62828;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   TIMELINE INTRO
+========================================= */
+
+.timeline-intro {
+    margin: 0 0 22px;
+
+    color: #3F6B3F;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   MAIN TIMELINE
+========================================= */
+
+.timeline {
+    position: relative;
+
+    width: 100%;
+
+    padding: 5px 0 20px;
+}
+
+
+/* =========================================
+   CENTER RED LINE
+========================================= */
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    height: 700px;
+
+    left: 50%;
+
+    width: 2px;
+
+    background-color: #C62828;
+
+    transform: translateX(-50%);
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   TIMELINE ITEM
+========================================= */
+
+.timeline-item {
+    position: relative;
+
+    width: 50%;
+
+    min-height: 155px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   LEFT ITEM
+========================================= */
+
+.timeline-item.left {
+    left: 0;
+
+    justify-content: flex-end;
+
+    padding-right: 30px;
+}
+
+
+/* =========================================
+   RIGHT ITEM
+========================================= */
+
+.timeline-item.right {
+    left: 50%;
+
+    justify-content: flex-start;
+
+    padding-left: 30px;
+}
+
+
+/* =========================================
+   TIMELINE CIRCLE
+========================================= */
+
+.timeline-item::after {
+    content: "";
+
+    position: absolute;
+
+    top: 44%;
+
+    right: -10px;
+
+    width: 18px;
+    height: 18px;
+
+    background-color: #FFF8E7;
+
+    border: 2px solid #C62828;
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 10;
+}
+
+
+.timeline-item.right::after {
+    left: -10px;
+
+    right: auto;
+}
+
+
+/* =========================================
+   FRAME CONTAINER
+========================================= */
+
+.timeline-card {
+    position: relative;
+
+    width: 340px;
+
+    height: 175px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   YOUR ACTUAL FRAME IMAGE
+========================================= */
+
+.timeline-frame {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: contain;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   TEXT INSIDE TIMELINE FRAME
+========================================= */
+
+.timeline-text {
+    position: absolute;
+
+    top: 30px;
+    left: 103px;
+
+    width: 210px;
+
+    text-align: left;
+
+    z-index: 5;
+}
+
+
+/* =========================================
+   YEAR
+========================================= */
+
+.timeline-year {
+    margin: 0 0 2px;
+
+    color: #C62828;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   TIMELINE TITLE
+========================================= */
+
+.timeline-title {
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+/* =========================================
+   LINE BETWEEN TITLE AND DESCRIPTION
+========================================= */
+
+.timeline-title::after {
+    content: "";
+
+    display: block;
+
+    width: 45px;
+    height: 1px;
+
+    margin-top: 8px;
+
+    background-color: #C62828;
+}
+
+
+/* MOVE LEFT-SIDE YEAR + TITLE */
+
+.timeline-item.left .timeline-year,
+.timeline-item.left .timeline-title {
+    position: relative;
+    left: -3px;
+}
+
+/* MOVE LEFT-SIDE DESCRIPTION */
+
+.timeline-item.left .timeline-text p {
+    position: relative;
+    left: -3px;
+}
+
+
+/* =========================================
+   TIMELINE DESCRIPTION
+========================================= */
+
+.timeline-text p {
+    margin: 8px 0 0;
+    
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 9px;
+    font-weight: 400;
+
+    line-height: 1.5;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   RIGHT-SIDE TEXT
+========================================= */
+
+.timeline-item.right .timeline-text {
+    top: 30px;
+    left: 40px;
+
+    width: 210px;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .timeline-card {
+        width: 320px;
+        height: 165px;
+    }
+
+    .timeline-item.left {
+        padding-right: 20px;
+    }
+
+    .timeline-item.right {
+        padding-left: 20px;
+    }
+
+    .timeline-text {
+        left: 105px;
+
+        width: 195px;
+    }
+
+    .timeline-item.right .timeline-text {
+        left: 23px;
+
+        width: 195px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .timeline::before {
+        left: 20px;
+    }
+
+    .timeline-item,
+    .timeline-item.left,
+    .timeline-item.right {
+
+        width: 100%;
+
+        left: 0;
+
+        justify-content: flex-start;
+
+        padding-left: 45px;
+        padding-right: 0;
+
+        min-height: 155px;
+    }
+
+
+    .timeline-item::after,
+    .timeline-item.right::after {
+
+        left: 11px;
+
+        right: auto;
+    }
+
+
+    .timeline-card {
+        width: 340px;
+        height: 175px;
+
+        max-width: calc(100vw - 65px);
+    }
+
+}
+
+/* MOVE 2ND TIMELINE ITEM */
+.timeline-item-2 {
+    top: -42px;
+}
+
+.timeline-item-3 {
+    top: -79px;
+}
+
+.timeline-item-4 {
+    top: -126px;
+}
+
+.timeline-item-5 {
+    top: -173px;
+}
+
+
+
+/* =========================================
+   PIZZA CUSTOMIZATION SECTION
+========================================= */
+
+.pizza-customization-section {
+    position: relative;
+
+    width: 100vw;
+
+    margin-left: calc(50% - 50vw);
+
+    overflow: hidden;
+
+    line-height: normal;
+}
+
+
+/* =========================================
+   BACKGROUND IMAGE
+========================================= */
+
+.pizza-customization-bg {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.customization-content {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 63%;
+    height: 100%;
+
+    z-index: 5;
+
+    font-family: 'Poppins', sans-serif;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   CUSTOMIZE YOUR
+========================================= */
+
+.customize-small-title {
+    position: absolute;
+
+    top: 5%;
+    left: 37%;
+
+    color: #FFFFFF;
+
+    font-size: 23px;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    white-space: nowrap;
+}
+
+/* =========================================
+   PIZZA
+========================================= */
+
+.customize-main-title {
+    position: absolute;
+
+    top: 12%;
+    left: 30%;
+
+    color: #FFFFFF;
+
+    font-size: 110px;
+    font-weight: 700;
+
+    line-height: 0.95;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   EVERY SUNDAY
+   TEXT INSIDE GREEN BANNER
+========================================= */
+
+.customize-sunday {
+    position: absolute;
+
+    top: 33.5%;
+    left: 31%;
+
+    width: 48%;
+
+    color: #FFFFFF;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.customize-description {
+    position: absolute;
+
+    top: 47%;
+
+    left: 27%;
+
+    width: 55%;
+
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    line-height: 1.35;
+
+    text-align: center;
+}
+
+
+.customize-description span {
+    color: #3F6B3F;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   CATEGORY LABELS
+========================================= */
+
+.customize-categories {
+    position: absolute;
+
+    top: 79%;
+
+    left: 13.5%;
+
+    width: 78%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+/* =========================================
+   CATEGORY
+========================================= */
+
+.customize-category {
+    width: 16.66%;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   CATEGORY TEXT
+========================================= */
+
+.customize-category span {
+    display: block;
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   CUSTOMIZE NOW BUTTON
+========================================= */
+
+.customize-button {
+    position: absolute;
+
+    top: 85.5%;
+
+    left: 38%;
+
+    width: 250px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 0;
+
+    border: 1px solid #3F6B3F;
+
+    border-radius: 20px;
+
+    background-color: #222222;
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+/* =========================================
+   BUTTON ARROW CIRCLE
+========================================= */
+
+.customize-arrow {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #3F6B3F;
+
+    border-radius: 50%;
+
+    color: #3F6B3F;
+
+    font-size: 17px;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.customize-button:hover {
+    background-color: #222222;
+    color: #FFFFFF;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   RIGHT-SIDE "MAKE IT YOURS!"
+========================================= */
+
+.customize-right-text {
+    position: absolute;
+
+    top: 14%;
+
+    left: 69%;
+
+    z-index: 5;
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.15;
+
+    text-align: left;
+}
+
+/* MOVE PIZZA CUSTOMIZATION SECTION UP */
+.pizza-customization-section {
+    position: relative;
+    top: -100px;
+}
+
+
+
+/* =========================================
+   FIND US / LOCATION SECTION
+========================================= */
+
+.location-section {
+    position: relative;
+
+    width: 100vw;
+
+    margin-left: calc(50% - 50vw);
+
+    top: -85px;
+
+    min-height: 510px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+/* =========================================
+   BACKGROUND DESIGN
+========================================= */
+
+.location-background {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   LOCATION CONTENT
+========================================= */
+
+.location-content {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+
+    max-width: 1030px;
+
+    margin: 0 auto;
+
+    padding: 35px 35px 45px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   FIND US TITLE
+========================================= */
+
+.location-content > h2 {
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    text-align: center;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.location-subtitle {
+    margin: 2px 0 15px;
+
+    color: #FFFFFF;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   OUR LOCATION TITLE
+========================================= */
+
+.location-content > h3 {
+    margin: 0 0 7px;
+
+    color: #FFFFFF;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   LOCATION CONTAINER
+========================================= */
+
+.location-container {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 32px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   LOCATION PHOTO
+========================================= */
+
+.location-map {
+    width: 53%;
+
+    flex-shrink: 0;
+}
+
+
+.location-map img {
+    display: block;
+
+    width: 100%;
+
+    height: 275px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================
+   INFORMATION CARD
+========================================= */
+
+.location-info {
+    width: 34%;
+
+    min-height: 275px;
+
+    padding: 15px 27px;
+
+    box-sizing: border-box;
+
+    background-color: #FFF8E7;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================
+   INFORMATION ITEM
+========================================= */
+
+.location-info-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 9px;
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.location-icon {
+    width: 20px;
+
+    flex-shrink: 0;
+
+    color: #C62828;
+
+    font-size: 20px;
+
+    line-height: 1.1;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   INFO HEADING
+========================================= */
+
+.location-info-item h4 {
+    margin: 0 0 1px;
+
+    color: #C62828;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+
+/* =========================================
+   INFO TEXT
+========================================= */
+
+.location-info-item p {
+    margin: 0;
+
+    color: #222222;
+
+    font-size: 9px;
+
+    font-weight: 400;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.location-divider {
+    width: 100%;
+
+    margin: 9px 0;
+
+    border-top: 2px dashed #222222;
+}
+
+
+/* =========================================
+   GET DIRECTIONS BUTTON
+========================================= */
+
+.directions-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    margin-top: 3px;
+
+    padding: 9px 16px;
+
+    background-color: #C62828;
+
+    color: #FFFFFF;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    transition: 0.2s ease;
+}
+
+
+/* =========================================
+   BUTTON ARROW
+========================================= */
+
+.directions-button span {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.directions-button strong {
+    font-size: 17px;
+    font-weight: 800;
+    position: relative;
+    top: -2.5px;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.directions-button:hover {
+    background-color: #C62828;
+
+    color: #FFFFFF;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   FOOTER SECTION
+========================================= */
+
+.footer {
+    width: 100vw;
+
+    background-color: #222222;
+
+    color: #FFFFFF;
+
+    font-family: 'Poppins', sans-serif;
+
+    box-sizing: border-box;
+
+    padding: 14px 40px 20px;
+
+    margin-top: -85px;
+
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   FOOTER CONTENT
+========================================= */
+
+.footer-content {
+    width: 100%;
+
+    max-width: none;
+
+    margin: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        1.35fr
+        1fr
+        1fr
+        1.15fr;
+
+    column-gap: 30px;
+
+    align-items: start;
+}
+
+
+/* =========================================
+   GENERAL FOOTER HEADINGS
+========================================= */
+
+.footer h2,
+.footer h3 {
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.footer-brand h2 {
+    font-size: 20px;
+    line-height: 1;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+
+.footer-tagline {
+    margin: 2px 0 5px 45px;
+
+    font-family: cursive;
+
+    font-size: 9px;
+
+    color: #FFFFFF;
+}
+
+
+.philippines-flag {
+    display: block;
+
+    width: 60px;
+    height: auto;
+
+    margin: 4px 0 0 68px;
+}
+
+
+/* =========================================
+   FOLLOW US
+========================================= */
+
+.footer-follow {
+    border-right: 1px solid #999999;
+
+    padding-right: 25px;
+
+    min-height: 85px;
+}
+
+
+.footer-follow h3,
+.footer-links h3,
+.footer-contact h3 {
+    font-size: 15px;
+
+    line-height: 1;
+
+    margin-bottom: 2px;
+}
+
+
+.footer-small-text {
+    margin: 0 0 5px;
+
+    font-size: 7px;
+
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   SOCIAL MEDIA
+========================================= */
+
+.social-link {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+
+    font-size: 8px;
+
+    line-height: 1;
+}
+
+
+.social-link img {
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   QUICK LINKS
+========================================= */
+
+.footer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.footer-links a {
+    color: #FFFFFF;
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    line-height: 1.15;
+
+    margin-top: 5px;
+}
+
+
+.footer-links a:hover {
+    color: #C62828;
+}
+
+
+/* =========================================
+   CONTACT US
+========================================= */
+
+.footer-contact {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.contact-row {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    margin-top: 8px;
+
+    font-size: 8px;
+
+    line-height: 1.2;
+}
+
+
+.contact-icon {
+    width: 13px;
+
+    color: #FFFFFF;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    flex-shrink: 0;
+}
+
+
+.location-row .contact-icon {
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   FOOTER BOTTOM
+========================================= */
+
+.footer-bottom {
+    width: 85%;
+
+    max-width: none;
+
+    margin: 12px auto 0;
+
+    padding-top: 10px;
+
+    border-top: 1px solid #999999;
+
+    text-align: center;
+}
+
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #FFFFFF;
+
+    font-size: 10px;
+
+    font-weight: 400;
+}
+
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
