@@ -1996,3 +1996,638 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+
+/* =========================================
+   LA MIA PIZZERIA - REGISTRATION PAGE
+   ========================================= */
+
+.register-page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* BLURRED BACKGROUND */
+.register-page::before {
+    content: "";
+
+    position: fixed;
+
+    top: -25px;
+    left: -25px;
+
+    width: calc(100% + 50px);
+    height: calc(100% + 50px);
+
+    background-image: url("images/location-backdesign.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: blur(8px);
+
+    z-index: -2;
+}
+
+
+/* WHITE TRANSPARENT OVERLAY */
+.register-page::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.30);
+
+    z-index: -1;
+}
+
+
+/* MAIN CENTER AREA */
+.register-container {
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* TITLE */
+.register-container h1 {
+    margin: 0 0 18px 0;
+
+    color: #ffffff;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+
+/* REGISTRATION BOX */
+.register-card {
+    width: 265px;
+    max-width: 100%;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.15);
+
+    padding: 25px 24px 22px;
+
+    box-sizing: border-box;
+}
+
+
+/* LOGO */
+.register-logo {
+    display: block;
+
+    width: 135px;
+    height: auto;
+
+    margin: 0 auto 28px;
+
+    object-fit: contain;
+}
+
+
+/* FORM */
+.register-form {
+    width: 100%;
+}
+
+
+/* INPUT BOX */
+.input-group {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* ICON AREA */
+.input-icon {
+    width: 43px;
+    height: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    color: #111111;
+
+    border-right: 1px solid #dddddd;
+
+    box-sizing: border-box;
+}
+
+
+/* EMAIL ICON */
+.email-icon {
+    color: #C62828;
+}
+
+
+/* INPUT */
+.input-group input {
+    width: 100%;
+    height: 100%;
+
+    padding: 0 15px;
+
+    border: none;
+    outline: none;
+
+    background: #ffffff;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 11px;
+
+    color: #222222;
+
+    box-sizing: border-box;
+}
+
+
+/* PLACEHOLDER */
+.input-group input::placeholder {
+    color: #999999;
+}
+
+
+/* WHEN CLICKED */
+.input-group:focus-within {
+    border-color: #C62828;
+}
+
+
+/* REGISTER BUTTON */
+.register-button {
+    width: 100%;
+    height: 44px;
+
+    margin-top: 0;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #C62828;
+
+    color: #ffffff;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+}
+
+.register-button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.20);
+}
+
+
+/* BUTTON ICON */
+.register-button-icon {
+    margin-right: 5px;
+
+    font-size: 13px;
+}
+
+
+/* LOGIN TEXT */
+.login-link {
+    margin: 15px 0 0;
+
+    text-align: center;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 8px;
+
+    color: #222222;
+}
+
+
+/* ARROW */
+.login-link span {
+    color: #3F6B3F;
+
+    margin: 0 2px;
+}
+
+
+/* LOGIN LINK */
+.login-link a {
+    color: #3F6B3F;
+
+    text-decoration: none;
+}
+
+
+/* LOGIN BOLD */
+.login-link a strong {
+    font-weight: 700;
+}
+
+
+/* ERROR MESSAGE */
+.register-error {
+    width: 100%;
+
+    margin-bottom: 15px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border-radius: 5px;
+
+    background: #ffecec;
+
+    color: #C62828;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+
+/* MOBILE */
+@media (max-width: 520px) {
+
+    .register-container {
+        padding: 30px 15px;
+    }
+
+    .register-container h1 {
+        font-size: 20px;
+    }
+
+    .register-card {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+
+
+/* =========================================
+   LA MIA PIZZERIA - SUCCESS PAGE
+   ========================================= */
+
+.success-page {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100vh;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    overflow-x: hidden;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* BLURRED BACKGROUND */
+
+.success-page::before {
+    content: "";
+
+    position: fixed;
+
+    top: -25px;
+    left: -25px;
+
+    width: calc(100% + 50px);
+    height: calc(100% + 50px);
+
+    background-image: url("images/location-backdesign.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter: blur(8px);
+
+    z-index: -2;
+}
+
+
+/* WHITE TRANSPARENT OVERLAY */
+
+.success-page::after {
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(255, 255, 255, 0.30);
+
+    z-index: -1;
+}
+
+
+/* CENTER AREA */
+
+.success-container {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    box-sizing: border-box;
+}
+
+
+/* TITLE */
+
+.success-container h1 {
+    margin: 0 0 18px 0;
+
+    color: #ffffff;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+}
+
+
+/* SUCCESS CARD */
+
+.success-card {
+    width: 360px;
+    max-width: 100%;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.15);
+
+    padding: 28px 28px 25px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+/* LOGO */
+
+.success-logo {
+    display: block;
+
+    width: 135px;
+    height: auto;
+
+    margin: 0 auto 22px;
+
+    object-fit: contain;
+}
+
+
+/* SUCCESS MESSAGE */
+
+.success-message {
+    margin: 0 0 22px;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 11px;
+
+    color: #222222;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* CUSTOMER INFORMATION */
+
+.success-info {
+    width: 100%;
+
+    border: 1px solid #dddddd;
+
+    box-sizing: border-box;
+
+    margin-bottom: 20px;
+}
+
+
+/* EACH ROW */
+
+.success-row {
+    min-height: 42px;
+
+    display: flex;
+    align-items: stretch;
+
+    border-bottom: 1px solid #dddddd;
+}
+
+
+.success-row:last-child {
+    border-bottom: none;
+}
+
+
+/* LABEL */
+
+.success-label {
+    width: 38%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px;
+
+    box-sizing: border-box;
+
+    background: #f8f8f8;
+
+    border-right: 1px solid #dddddd;
+
+    color: #222222;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* VALUE */
+
+.success-value {
+    width: 62%;
+
+    display: flex;
+    align-items: center;
+
+    padding: 8px 10px;
+
+    box-sizing: border-box;
+
+    color: #222222;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 9px;
+
+    text-align: left;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* REGISTER ANOTHER ACCOUNT BUTTON */
+
+.success-button {
+    display: block;
+
+    width: 100%;
+
+    height: 42px;
+
+    line-height: 42px;
+
+    box-sizing: border-box;
+
+    background: #C62828;
+
+    color: #ffffff;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    font-family: 'Poppins', Arial, sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+
+    text-align: center;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+
+.success-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.20);
+
+    background: #a91f1f;
+}
+
+.success-button:hover {
+    background: #a91f1f;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 520px) {
+
+    .success-container {
+        padding: 30px 15px;
+    }
+
+    .success-container h1 {
+        font-size: 19px;
+    }
+
+    .success-card {
+        width: 100%;
+        max-width: 360px;
+    }
+}
