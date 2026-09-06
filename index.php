@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +40,36 @@
                 <a href="#contact">Contact</a>
             </nav>
 
-         <!-- LOGIN / REGISTER -->
+            <!-- LOGIN / REGISTER -->
             <div class="auth-buttons">
 
-                <a href="#login" class="btn login-btn">
+                <?php if (isset($_SESSION['customer_id'])): ?>
+
+                <!-- LOGOUT -->
+                <a href="logout.php" class="btn login-btn">
+                  <span class="login-icon">👤</span>
+                  Logout
+                </a>
+
+                <?php else: ?>
+
+                <!-- LOGIN -->
+                <a href="login.php" class="btn login-btn">
                   <span class="login-icon">👤</span>
                   Login
                 </a>
 
-                <a href="#register" class="btn register-btn">
-                    <span class="register-icon">👤</span>
+                <?php endif; ?>
+
+
+                <!-- REGISTER - ALWAYS VISIBLE -->
+                <a href="register.php" class="btn register-btn">
+                  <span class="register-icon">👤</span>
                   Register
                 </a>
 
             </div>
-
+            
         </div>
 
     </header>

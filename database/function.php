@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'config.php';
 require 'validation.php';
 
@@ -19,12 +21,32 @@ $errors = $result['errors'];
 
 if (!empty($errors)) {
 
-    $message = implode(' ', $errors);
+    /*
+     * Store validation error temporarily in the session
+     */
 
-    header(
-        'Location: ../register.php?status=error&message='
-        . urlencode($message)
-    );
+    $_SESSION['register_error'] = implode(' ', $errors);
+
+
+    /*
+     * Store username, email, and phone temporarily
+     * so they can be restored on the registration page.
+     *
+     * Password is intentionally NOT stored.
+     */
+
+    $_SESSION['register_form'] = [
+        'username' => $_POST['username'] ?? '',
+        'email' => $_POST['email'] ?? '',
+        'phone' => $_POST['phone'] ?? ''
+    ];
+
+
+    /*
+     * Return to registration page
+     */
+
+    header('Location: ../register.php');
 
     exit;
 }
@@ -125,9 +147,22 @@ try {
     $newId = $pdo->lastInsertId();
 
 
-    header(
-        'Location: ../success.php?id=' . $newId
-    );
+    /*
+    * Automatically log in the newly registered customer
+    */
+
+    $_SESSION['customer_id'] = $newId;
+
+    $_SESSION['username'] = $result['data']['username'];
+
+    $_SESSION['email'] = $result['data']['email'];
+
+
+    /*
+    * Go directly to homepage
+    */
+
+    header('Location: ../index.php');
 
     exit;
 

@@ -1,7 +1,21 @@
 <?php
 
-$status  = $_GET['status'] ?? null;
-$message = $_GET['message'] ?? null;
+session_start();
+
+
+$message = $_SESSION['register_error'] ?? null;
+
+$username = $_SESSION['register_form']['username'] ?? '';
+$email = $_SESSION['register_form']['email'] ?? '';
+$phone = $_SESSION['register_form']['phone'] ?? '';
+
+
+/*
+ * Clear temporary registration data
+ */
+
+unset($_SESSION['register_error']);
+unset($_SESSION['register_form']);
 
 ?>
 
@@ -32,11 +46,11 @@ $message = $_GET['message'] ?? null;
                 class="register-logo"
             >
 
-            <?php if ($status === 'error'): ?>
+            <?php if ($message): ?>
 
-                <div class="register-error">
-                    <?= htmlspecialchars($message) ?>
-                </div>
+            <div class="register-error">
+             <?= htmlspecialchars($message) ?>
+            </div>
 
             <?php endif; ?>
 
@@ -59,6 +73,8 @@ $message = $_GET['message'] ?? null;
                         type="text"
                         name="username"
                         placeholder="Username"
+                        value="<?= htmlspecialchars($username) ?>"
+                        autocomplete="username"
                         required
                     >
 
@@ -76,6 +92,8 @@ $message = $_GET['message'] ?? null;
                         type="email"
                         name="email"
                         placeholder="Email"
+                        value="<?= htmlspecialchars($email) ?>"
+                        autocomplete="email"
                         required
                     >
 
@@ -93,6 +111,8 @@ $message = $_GET['message'] ?? null;
                         type="text"
                         name="phone"
                         placeholder="Phone Number"
+                        value="<?= htmlspecialchars($phone) ?>"
+                        autocomplete="tel"
                         required
                     >
 
@@ -110,6 +130,7 @@ $message = $_GET['message'] ?? null;
                         type="password"
                         name="password"
                         placeholder="Set Password"
+                        autocomplete="new-password"
                         required
                     >
 
@@ -127,6 +148,7 @@ $message = $_GET['message'] ?? null;
                         type="password"
                         name="confirm_password"
                         placeholder="Confirm Password"
+                        autocomplete="new-password"
                         required
                     >
 
