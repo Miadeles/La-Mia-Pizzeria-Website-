@@ -215,25 +215,374 @@ foreach ($cart as $item) {
 }
 
 
-// =========================================
-// CREATE TEMPORARY ORDER NUMBER
-// =========================================
+    // =========================================
+    // SAVE ORDER TO DATABASE
+    // =========================================
 
-$orderNumber =
-    'LM-' . date('YmdHis');
-
-
-// =========================================
-// CREATE ORDER DATE
-// =========================================
-
-$orderDate =
-    date('F j, Y g:i A');
+    require 'database/config.php';
 
 
-// =========================================
-// SUCCESS / DIGITAL RECEIPT
-// =========================================
+    // =========================================
+    // CREATE ORDER NUMBER
+    // =========================================
+
+    $orderNumber =
+        'LM-' . date('YmdHis') . '-' . random_int(100, 999);
+
+
+    // =========================================
+    // SAVE ORDER AND ORDER ITEMS
+    // =========================================
+
+    try {
+
+        $pdo = getConnection();
+
+        $pdo->beginTransaction();
+
+
+        // =====================================
+        // INSERT MAIN ORDER
+        // =====================================
+
+        $orderSql = "
+            INSERT INTO orders
+            (
+                customer_id,
+                order_number,
+                full_name,
+                phone,
+                order_type,
+                house_number,
+                street,
+                barangay,
+                city,
+                order_notes,
+                payment_method,
+                total_amount,
+                order_status
+            )
+            VALUES
+            (
+                :customer_id,
+                :order_number,
+                :full_name,
+                :phone,
+                :order_type,
+                :house_number,
+                :street,
+                :barangay,
+                :city,
+                :order_notes,
+                :payment_method,
+                :total_amount,
+                'Pending'
+            )
+        ";
+
+
+        $orderStmt = $pdo->prepare($orderSql);
+
+
+        $orderStmt->bindValue(
+            ':customer_id',
+            $_SESSION['customer_id'],
+            PDO::PARAM_INT
+        );
+
+        $orderStmt->bindValue(
+            ':order_number',
+            $orderNumber
+        );
+
+        $orderStmt->bindValue(
+            ':full_name',
+            $fullName
+        );
+
+        $orderStmt->bindValue(
+            ':phone',
+            $phone
+        );
+
+        $orderStmt->bindValue(
+            ':order_type',
+            $orderType
+        );
+
+        $orderStmt->bindValue(
+            ':house_number',
+            $houseNumber !== '' ? $houseNumber : null,
+            $houseNumber !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL
+        );
+
+        $orderStmt->bindValue(
+            ':street',
+            $street !== '' ? $street : null,
+            $street !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL
+        );
+
+        $orderStmt->bindValue(
+            ':barangay',
+            $barangay !== '' ? $barangay : null,
+            $barangay !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL
+        );
+
+        $orderStmt->bindValue(
+            ':city',
+            $city !== '' ? $city : null,
+            $city !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL
+        );
+
+        $orderStmt->bindValue(
+            ':order_notes',
+            $orderNotes !== '' ? $orderNotes : null,
+            $orderNotes !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL
+        );
+
+        $orderStmt->bindValue(
+            ':payment_method',
+            $paymentMethod
+        );
+
+        $orderStmt->bindValue(
+            ':total_amount',
+            $total
+        );
+
+
+        $orderStmt->execute();
+
+
+        // =====================================
+        // GET NEW ORDER ID
+        // =====================================
+
+        $orderId = $pdo->lastInsertId();
+
+
+        // =====================================
+        // INSERT ORDER ITEMS
+        // =====================================
+
+        $itemSql = "
+            INSERT INTO order_items
+            (
+                order_id,
+                pizza_name,
+                pizza_size,
+                quantity,
+                unit_price,
+                sauce,
+                toppings,
+                item_total
+            )
+            VALUES
+            (
+                :order_id,
+                :pizza_name,
+                :pizza_size,
+                :quantity,
+                :unit_price,
+                :sauce,
+                :toppings,
+                :item_total
+            )
+        ";
+
+
+        $itemStmt = $pdo->prepare($itemSql);
+
+
+        foreach ($cart as $item) {
+
+            $itemName =
+                $item['name'] ?? 'Pizza';
+
+            $itemSize =
+                $item['size'] ?? '';
+
+            $itemQuantity =
+                (int) ($item['quantity'] ?? 0);
+
+            $itemPrice =
+                (float) ($item['price'] ?? 0);
+
+            $itemTotal =
+                $itemPrice * $itemQuantity;
+
+
+            // =================================
+            // CUSTOM PIZZA INFORMATION
+            // =================================
+
+            $sauce = null;
+            $toppings = null;
+
+
+            if (
+                isset($item['customization']) &&
+                is_array($item['customization'])
+            ) {
+
+                $sauce =
+                    $item['customization']['sauce'] ?? null;
+
+
+                if (
+                    isset($item['customization']['toppings']) &&
+                    is_array($item['customization']['toppings'])
+                ) {
+
+                    $toppings =
+                        implode(
+                            ', ',
+                            $item['customization']['toppings']
+                        );
+
+                }
+
+            }
+
+
+            // =================================
+            // INSERT ITEM
+            // =================================
+
+            $itemStmt->bindValue(
+                ':order_id',
+                $orderId,
+                PDO::PARAM_INT
+            );
+
+            $itemStmt->bindValue(
+                ':pizza_name',
+                $itemName
+            );
+
+            $itemStmt->bindValue(
+                ':pizza_size',
+                $itemSize
+            );
+
+            $itemStmt->bindValue(
+                ':quantity',
+                $itemQuantity,
+                PDO::PARAM_INT
+            );
+
+            $itemStmt->bindValue(
+                ':unit_price',
+                $itemPrice
+            );
+
+            $itemStmt->bindValue(
+                ':sauce',
+                $sauce,
+                $sauce !== null
+                    ? PDO::PARAM_STR
+                    : PDO::PARAM_NULL
+            );
+
+            $itemStmt->bindValue(
+                ':toppings',
+                $toppings,
+                $toppings !== null
+                    ? PDO::PARAM_STR
+                    : PDO::PARAM_NULL
+            );
+
+            $itemStmt->bindValue(
+                ':item_total',
+                $itemTotal
+            );
+
+
+            $itemStmt->execute();
+
+        }
+
+
+        // =====================================
+        // COMPLETE DATABASE TRANSACTION
+        // =====================================
+
+        $pdo->commit();
+
+
+    } catch (PDOException $e) {
+
+
+        // =====================================
+        // CANCEL DATABASE TRANSACTION
+        // =====================================
+
+        if (
+            isset($pdo) &&
+            $pdo->inTransaction()
+        ) {
+
+            $pdo->rollBack();
+
+        }
+
+
+        $_SESSION['checkout_errors'] = [
+            'Unable to save your order. Please try again.'
+        ];
+
+
+        $_SESSION['checkout_form'] = [
+
+            'full_name' =>
+                $fullName,
+
+            'phone' =>
+                $phone,
+
+            'order_type' =>
+                $orderType,
+
+            'house_number' =>
+                $houseNumber,
+
+            'street' =>
+                $street,
+
+            'barangay' =>
+                $barangay,
+
+            'city' =>
+                $city,
+
+            'order_notes' =>
+                $orderNotes,
+
+            'payment_method' =>
+                $paymentMethod
+
+        ];
+
+
+        header('Location: checkout.php');
+
+        exit;
+
+    }
+
+
+    // =========================================
+    // CREATE ORDER DATE
+    // =========================================
+
+    $orderDate =
+        date('F j, Y g:i A');
+
+
+
+    // =========================================
+    // SUCCESS / DIGITAL RECEIPT
+    // =========================================
 
 ?>
 
