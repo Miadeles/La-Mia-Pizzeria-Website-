@@ -4250,3 +4250,455 @@ body {
 #place-order-btn:hover {
     opacity: 0.9;
 }
+
+
+
+
+
+/* =========================================
+   CUSTOM PIZZA PAGE
+   ========================================= */
+
+.custom-pizza-page {
+    min-height: 100vh;
+    padding: 55px 7% 80px;
+    background: #fff8e7;
+}
+
+
+/* =========================================
+   PAGE HEADING
+   ========================================= */
+
+.custom-pizza-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.custom-pizza-heading h1 {
+    margin: 0;
+    color: #c62828;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.custom-pizza-heading p {
+    margin: 10px auto 0;
+    color: #222222;
+    font-size: 17px;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+   ========================================= */
+
+.custom-pizza-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+
+    gap: 30px;
+
+    align-items: start;
+}
+
+
+/* =========================================
+   CUSTOMIZATION OPTIONS
+   ========================================= */
+
+.custom-pizza-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* =========================================
+   CUSTOMIZATION SECTION
+   ========================================= */
+
+.custom-section {
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.custom-section h2 {
+    margin: 0;
+
+    color: #c62828;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+.custom-help {
+    margin: 5px 0 18px;
+
+    color: #555555;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SIZE OPTIONS
+   ========================================= */
+
+.size-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.size-option {
+    cursor: pointer;
+}
+
+.size-option input {
+    display: none;
+}
+
+.size-option span {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    min-height: 75px;
+
+    border: 2px solid #3f6b3f;
+
+    border-radius: 12px;
+
+    color: #222222;
+
+    background: #ffffff;
+
+    transition: 0.2s;
+}
+
+.size-option strong {
+    color: #3f6b3f;
+
+    font-size: 15px;
+}
+
+.size-option input:checked + span {
+    background: #3f6b3f;
+
+    color: #ffffff;
+}
+
+.size-option input:checked + span strong {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   CHECKBOX / RADIO OPTIONS
+   ========================================= */
+
+.custom-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+}
+
+.custom-options label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d7d7d7;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.custom-options label:hover {
+    border-color: #3f6b3f;
+}
+
+.custom-options input {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #3f6b3f;
+
+    flex-shrink: 0;
+}
+
+.custom-options span {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+
+    gap: 10px;
+
+    color: #222222;
+
+    font-size: 14px;
+}
+
+.custom-options strong {
+    color: #3f6b3f;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SUMMARY
+   ========================================= */
+
+.custom-pizza-summary {
+    position: sticky;
+
+    top: 110px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.10);
+}
+
+.custom-pizza-summary h2 {
+    margin: 0 0 25px;
+
+    color: #c62828;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SUMMARY LINES
+   ========================================= */
+
+.custom-summary-line {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 16px;
+
+    color: #222222;
+
+    font-size: 14px;
+}
+
+.custom-summary-line strong {
+    color: #3f6b3f;
+
+    text-align: right;
+
+    max-width: 200px;
+}
+
+
+/* =========================================
+   DIVIDER
+   ========================================= */
+
+.custom-summary-divider {
+    height: 1px;
+
+    background: #dddddd;
+
+    margin: 20px 0;
+}
+
+
+/* =========================================
+   TOTAL
+   ========================================= */
+
+.custom-total {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.custom-total span {
+    color: #222222;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+.custom-total strong {
+    color: #c62828;
+
+    font-size: 28px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   CUSTOM QUANTITY
+   ========================================= */
+
+.custom-quantity {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.custom-quantity label {
+    font-weight: 600;
+
+    color: #222222;
+}
+
+
+/* =========================================
+   ADD TO CART
+   ========================================= */
+
+.custom-add-cart-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #c62828;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.custom-add-cart-btn:hover {
+    transform: translateY(-1px);
+
+    opacity: 0.92;
+}
+
+.custom-add-cart-btn:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   CART MESSAGE
+   ========================================= */
+
+.custom-cart-message {
+    min-height: 24px;
+
+    margin-top: 12px;
+
+    text-align: center;
+
+    color: #3f6b3f;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .custom-pizza-container {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-pizza-summary {
+        position: static;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .custom-pizza-page {
+        padding: 35px 20px 60px;
+    }
+
+    .custom-pizza-heading h1 {
+        font-size: 32px;
+    }
+
+    .size-options {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-options {
+        grid-template-columns: 1fr;
+    }
+
+}

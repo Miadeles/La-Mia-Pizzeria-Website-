@@ -1,6 +1,22 @@
 <?php
+
 session_start();
+
+if (!isset($_SESSION['customer_id'])) {
+
+    $_SESSION['redirect_after_login'] = 'cart.php';
+
+    header(
+        'Location: login.php?status=error&message=' .
+        urlencode('Please login first to view your cart.')
+    );
+
+    exit;
+}
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

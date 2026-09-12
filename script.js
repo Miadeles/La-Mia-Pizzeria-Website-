@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
        QUANTITY BUTTONS
        ========================================= */
 
-    document.querySelectorAll(".quantity-control").forEach(function (control) {
+    document.querySelectorAll(".pizza-order-card .quantity-control").forEach(function (control) {
 
         const buttons = control.querySelectorAll("button");
         const quantityDisplay = control.querySelector("span");
@@ -39,8 +39,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
+        CHANGE PRICE BASED ON PIZZA SIZE
+    ========================================= */
+
+        document.querySelectorAll(".pizza-order-card").forEach(function (card) {
+
+            const sizeSelect =
+                card.querySelector(".pizza-size select");
+
+            const priceDisplay =
+                card.querySelector(".pizza-price");
+
+            if (!sizeSelect || !priceDisplay) {
+                return;
+            }
+
+            function updatePizzaPrice() {
+
+                const selectedOption =
+                    sizeSelect.options[sizeSelect.selectedIndex];
+
+                const newPrice =
+                    parseFloat(selectedOption.dataset.price);
+
+                priceDisplay.textContent =
+                    "₱" + newPrice;
+
+            }
+
+            sizeSelect.addEventListener("change", function () {
+
+                updatePizzaPrice();
+
+            });
+
+            /* Set correct price when page first loads */
+
+            updatePizzaPrice();
+
+        });
+
+
+
+    /* =========================================
        ADD TO CART
-       ========================================= */
+    ========================================= */
 
     document.querySelectorAll(".add-cart-btn").forEach(function (button) {
 
@@ -52,23 +95,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.querySelector("h2").textContent.trim();
 
 
-            /* Get price */
-
-            const priceText =
-                card.querySelector(".pizza-price").textContent
-                    .replace("₱", "")
-                    .replace(",", "")
-                    .trim();
-
-            const price = parseFloat(priceText);
-
-
             /* Get size */
 
             const sizeSelect =
                 card.querySelector(".pizza-size select");
 
-            const size = sizeSelect.value;
+            const size =
+                sizeSelect.value;
+
+
+            /* Get price based on selected size */
+
+            const selectedOption =
+                sizeSelect.options[sizeSelect.selectedIndex];
+
+            const price =
+                parseFloat(selectedOption.dataset.price);
+
+
 
 
             /* Get quantity */
@@ -179,8 +223,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-   DISPLAY CART
-   ========================================= */
+     DISPLAY CART
+     ========================================= */
 
 const cartItemsContainer =
     document.getElementById("cart-items");
@@ -300,7 +344,7 @@ if (cartItemsContainer && cartTotal) {
 
         /* =========================================
            CART MINUS BUTTON
-           ========================================= */
+        ========================================= */
 
         document.querySelectorAll(".cart-minus").forEach(function (button) {
 
@@ -432,6 +476,472 @@ if (checkoutItems && checkoutTotal) {
     }
 
 }
+
+
+
+/* =========================================
+   CUSTOM PIZZA CUSTOMIZATION
+   ========================================= */
+
+const customPizzaPage =
+    document.querySelector(".custom-pizza-page");
+
+if (customPizzaPage) {
+
+    const sizeOptions =
+        document.querySelectorAll(
+            'input[name="custom-size"]'
+        );
+
+    const sauceOptions =
+        document.querySelectorAll(
+            'input[name="custom-sauce"]'
+        );
+
+    const toppingOptions =
+        document.querySelectorAll(
+            'input[name="custom-topping"]'
+        );
+
+    const summarySize =
+        document.getElementById(
+            "custom-summary-size"
+        );
+
+    const summarySauce =
+        document.getElementById(
+            "custom-summary-sauce"
+        );
+
+    const summaryToppings =
+        document.getElementById(
+            "custom-summary-toppings"
+        );
+
+    const totalDisplay =
+        document.getElementById(
+            "custom-total"
+        );
+
+    const quantityDisplay =
+        document.getElementById(
+            "custom-quantity"
+        );
+
+    const minusButton =
+        document.getElementById(
+            "custom-minus"
+        );
+
+    const plusButton =
+        document.getElementById(
+            "custom-plus"
+        );
+
+    const addCartButton =
+        document.getElementById(
+            "custom-add-cart"
+        );
+
+    const cartMessage =
+        document.getElementById(
+            "custom-cart-message"
+        );
+
+
+    /* =========================================
+       UPDATE CUSTOM PIZZA
+       ========================================= */
+
+    function updateCustomPizza() {
+
+        /* -------------------------
+           SIZE
+           ------------------------- */
+
+        const selectedSize =
+            document.querySelector(
+                'input[name="custom-size"]:checked'
+            );
+
+        const size =
+            selectedSize.value;
+
+        const sizePrice =
+            parseFloat(
+                selectedSize.dataset.price
+            );
+
+
+        /* -------------------------
+           SAUCE
+           ------------------------- */
+
+        const selectedSauce =
+            document.querySelector(
+                'input[name="custom-sauce"]:checked'
+            );
+
+        const sauce =
+            selectedSauce.value;
+
+        const saucePrice =
+            parseFloat(
+                selectedSauce.dataset.price
+            );
+
+
+        /* -------------------------
+           TOPPINGS
+           ------------------------- */
+
+        const selectedToppings = [];
+
+        let toppingsPrice = 0;
+
+
+        toppingOptions.forEach(function (topping) {
+
+            if (topping.checked) {
+
+                selectedToppings.push(
+                    topping.value
+                );
+
+                toppingsPrice +=
+                    parseFloat(
+                        topping.dataset.price
+                    );
+
+            }
+
+        });
+
+
+        /* -------------------------
+           TOTAL
+           ------------------------- */
+
+        const total =
+            sizePrice +
+            saucePrice +
+            toppingsPrice;
+
+
+        /* -------------------------
+           UPDATE SUMMARY
+           ------------------------- */
+
+        summarySize.textContent =
+            size.charAt(0).toUpperCase() +
+            size.slice(1);
+
+        summarySauce.textContent =
+            sauce;
+
+
+        if (selectedToppings.length === 0) {
+
+            summaryToppings.textContent =
+                "None";
+
+        } else {
+
+            summaryToppings.textContent =
+                selectedToppings.join(", ");
+
+        }
+
+
+        totalDisplay.textContent =
+            "₱" + total.toFixed(2);
+
+    }
+
+
+    /* =========================================
+       SIZE CHANGE
+       ========================================= */
+
+    sizeOptions.forEach(function (option) {
+
+        option.addEventListener(
+            "change",
+            updateCustomPizza
+        );
+
+    });
+
+
+    /* =========================================
+       SAUCE CHANGE
+       ========================================= */
+
+    sauceOptions.forEach(function (option) {
+
+        option.addEventListener(
+            "change",
+            updateCustomPizza
+        );
+
+    });
+
+
+    /* =========================================
+       TOPPING CHANGE
+       ========================================= */
+
+    toppingOptions.forEach(function (option) {
+
+        option.addEventListener(
+            "change",
+            updateCustomPizza
+        );
+
+    });
+
+
+    /* =========================================
+       QUANTITY PLUS
+       ========================================= */
+
+    plusButton.addEventListener(
+        "click",
+        function () {
+
+            let quantity =
+                parseInt(
+                    quantityDisplay.textContent
+                ) || 1;
+
+            quantity++;
+
+            quantityDisplay.textContent =
+                quantity;
+
+            cartMessage.textContent = "";
+
+        }
+    );
+
+
+    /* =========================================
+       QUANTITY MINUS
+       ========================================= */
+
+    minusButton.addEventListener(
+        "click",
+        function () {
+
+            let quantity =
+                parseInt(
+                    quantityDisplay.textContent
+                ) || 1;
+
+            if (quantity > 1) {
+
+                quantity--;
+
+            }
+
+            quantityDisplay.textContent =
+                quantity;
+
+            cartMessage.textContent = "";
+
+        }
+    );
+
+
+    /* =========================================
+       ADD CUSTOM PIZZA TO CART
+       ========================================= */
+
+    addCartButton.addEventListener(
+        "click",
+        function () {
+
+            const selectedSize =
+                document.querySelector(
+                    'input[name="custom-size"]:checked'
+                );
+
+            const selectedSauce =
+                document.querySelector(
+                    'input[name="custom-sauce"]:checked'
+                );
+
+
+            const size =
+                selectedSize.value;
+
+            const sauce =
+                selectedSauce.value;
+
+
+            const sizePrice =
+                parseFloat(
+                    selectedSize.dataset.price
+                );
+
+            const saucePrice =
+                parseFloat(
+                    selectedSauce.dataset.price
+                );
+
+
+            const selectedToppings = [];
+
+            let toppingsPrice = 0;
+
+
+            toppingOptions.forEach(
+                function (topping) {
+
+                    if (topping.checked) {
+
+                        selectedToppings.push(
+                            topping.value
+                        );
+
+                        toppingsPrice +=
+                            parseFloat(
+                                topping.dataset.price
+                            );
+
+                    }
+
+                }
+            );
+
+
+            const quantity =
+                parseInt(
+                    quantityDisplay.textContent
+                ) || 1;
+
+
+            const price =
+                sizePrice +
+                saucePrice +
+                toppingsPrice;
+
+
+            /* -------------------------
+               CUSTOMIZATION DETAILS
+               ------------------------- */
+
+            const customization = {
+
+                sauce: sauce,
+
+                toppings: selectedToppings
+
+            };
+
+
+            /* -------------------------
+               CREATE CART ITEM
+               ------------------------- */
+
+            const cartItem = {
+
+                name: "Custom Pizza",
+
+                price: price,
+
+                size: size,
+
+                quantity: quantity,
+
+                customization: customization
+
+            };
+
+
+            /* -------------------------
+               GET EXISTING CART
+               ------------------------- */
+
+            let cart =
+                JSON.parse(
+                    localStorage.getItem(
+                        "pizzaCart"
+                    )
+                ) || [];
+
+
+            /* -------------------------
+               ADD TO CART
+               ------------------------- */
+
+            cart.push(cartItem);
+
+
+            /* -------------------------
+               SAVE CART
+               ------------------------- */
+
+            localStorage.setItem(
+                "pizzaCart",
+                JSON.stringify(cart)
+            );
+
+
+            /* -------------------------
+               SUCCESS MESSAGE
+               ------------------------- */
+
+            cartMessage.textContent =
+                "Custom pizza added to cart!";
+
+
+            /* -------------------------
+               BUTTON FEEDBACK
+               ------------------------- */
+
+            const originalText =
+                addCartButton.textContent;
+
+
+            addCartButton.textContent =
+                "ADDED TO CART ✓";
+
+            addCartButton.disabled =
+                true;
+
+
+            setTimeout(
+                function () {
+
+                    addCartButton.textContent =
+                        originalText;
+
+                    addCartButton.disabled =
+                        false;
+
+                },
+                1200
+            );
+
+
+            console.log(
+                "Custom Pizza Cart:",
+                cart
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       INITIAL PRICE
+       ========================================= */
+
+    updateCustomPizza();
+
+}
+
 
 
 

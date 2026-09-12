@@ -1,6 +1,22 @@
 <?php
+
 session_start();
+
+if (!isset($_SESSION['customer_id'])) {
+
+    $_SESSION['redirect_after_login'] = 'order.php';
+
+    header(
+        'Location: login.php?status=error&message=' .
+        urlencode('Please login first before ordering a pizza.')
+    );
+
+    exit;
+}
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -105,15 +121,15 @@ session_start();
 
                     <div class="pizza-price">₱399</div>
 
-                    <div class="pizza-size">
-                        <label for="pepperoni-size">Size:</label>
+                        <div class="pizza-size">
+                            <label for="pepperoni-size">Size:</label>
 
-                        <select id="pepperoni-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                        </select>
-                    </div>
+                            <select id="pepperoni-size">
+                                <option value="small" data-price="399">Small</option>
+                                <option value="medium" data-price="449">Medium</option>
+                                <option value="large" data-price="499">Large</option>
+                            </select>
+                        </div>
 
                     <div class="pizza-quantity">
                         <label>Quantity:</label>
@@ -135,7 +151,7 @@ session_start();
 
             <!-- =====================================
                  MARGHERITA
-                 ===================================== -->
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/margherita-pizza.png" alt="Margherita Pizza">
@@ -155,9 +171,9 @@ session_start();
                         <label for="margherita-size">Size:</label>
 
                         <select id="margherita-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="349">Small</option>
+                            <option value="medium" data-price="399">Medium</option>
+                            <option value="large" data-price="449">Large</option>
                         </select>
                     </div>
 
@@ -201,9 +217,9 @@ session_start();
                         <label for="creamy-spinach-size">Size:</label>
 
                         <select id="creamy-spinach-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="429">Small</option>
+                            <option value="medium" data-price="479">Medium</option>
+                            <option value="large" data-price="529">Large</option>
                         </select>
                     </div>
 
@@ -227,7 +243,7 @@ session_start();
 
             <!-- =====================================
                  NEW YORK STYLE
-                 ===================================== -->
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/new-york-style-pizza.png" alt="New York Style Pizza">
@@ -247,9 +263,9 @@ session_start();
                         <label for="new-york-size">Size:</label>
 
                         <select id="new-york-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="449">Small</option>
+                            <option value="medium" data-price="499">Medium</option>
+                            <option value="large" data-price="549">Large</option>
                         </select>
                     </div>
 
@@ -293,9 +309,9 @@ session_start();
                         <label for="hawaiian-size">Size:</label>
 
                         <select id="hawaiian-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="429">Small</option>
+                            <option value="medium" data-price="479">Medium</option>
+                            <option value="large" data-price="529">Large</option>
                         </select>
                     </div>
 
@@ -340,9 +356,9 @@ session_start();
                         <label for="extravaganzza-size">Size:</label>
 
                         <select id="extravaganzza-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="499">Small</option>
+                            <option value="medium" data-price="549">Medium</option>
+                            <option value="large" data-price="599">Large</option>
                         </select>
                     </div>
 
@@ -389,9 +405,9 @@ session_start();
                         <label for="cheese-mania-size">Size:</label>
 
                         <select id="cheese-mania-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="449">Small</option>
+                            <option value="medium" data-price="499">Medium</option>
+                            <option value="large" data-price="549">Large</option>
                         </select>
                     </div>
 
@@ -436,9 +452,9 @@ session_start();
                         <label for="spinach-bacon-size">Size:</label>
 
                         <select id="spinach-bacon-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="459">Small</option>
+                            <option value="medium" data-price="509">Medium</option>
+                            <option value="large" data-price="559">Large</option>
                         </select>
                     </div>
 
@@ -482,9 +498,9 @@ session_start();
                         <label for="american-bacon-size">Size:</label>
 
                         <select id="american-bacon-size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
+                            <option value="small" data-price="479">Small</option>
+                            <option value="medium" data-price="529">Medium</option>
+                            <option value="large" data-price="579">Large</option>
                         </select>
                     </div>
 

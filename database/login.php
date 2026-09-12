@@ -99,13 +99,17 @@ try {
 
 
     /*
-     * Login successful
-     */
+    * Login successful
+    */
 
-    header('Location: ../index.php');
+    $redirectPage =
+        $_SESSION['redirect_after_login'] ?? 'index.php';
+
+    unset($_SESSION['redirect_after_login']);
+
+    header('Location: ../' . $redirectPage);
 
     exit;
-
 
 } catch (PDOException $e) {
 

@@ -4,6 +4,16 @@ date_default_timezone_set('Asia/Manila');
 
 session_start();
 
+if (!isset($_SESSION['customer_id'])) {
+
+    header(
+        'Location: login.php?status=error&message=' .
+        urlencode('Please login first before placing an order.')
+    );
+
+    exit;
+}
+
 
 // =========================================
 // CHECK THAT THE FORM WAS SUBMITTED
@@ -577,6 +587,13 @@ $orderDate =
 
 
     </main>
+
+
+    <script>
+
+     localStorage.removeItem("pizzaCart");
+
+    </script>
 
 
 </body>

@@ -2,6 +2,18 @@
 
 session_start();
 
+if (!isset($_SESSION['customer_id'])) {
+
+    $_SESSION['redirect_after_login'] = 'checkout.php';
+
+    header(
+        'Location: login.php?status=error&message=' .
+        urlencode('Please login first before checkout.')
+    );
+
+    exit;
+}
+
 $checkoutErrors = $_SESSION['checkout_errors'] ?? [];
 
 $checkoutForm = $_SESSION['checkout_form'] ?? [];
@@ -10,6 +22,8 @@ unset($_SESSION['checkout_errors']);
 unset($_SESSION['checkout_form']);
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

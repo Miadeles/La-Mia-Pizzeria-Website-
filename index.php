@@ -86,7 +86,7 @@ session_start();
          class="banner-image">
 
         <!-- ORDER NOW BUTTON -->
-        <a href="#menu" class="order-now-button">
+        <a href="order.php" class="order-now-button">
             ORDER NOW
          <span class="arrow">➜</span>
         </a>
@@ -497,10 +497,10 @@ session_start();
                 CUSTOMIZE BUTTON
             ========================================== -->
 
-            <button class="customize-button" type="button">
+            <a href="customize.php" class="customize-button">
                 <span>CUSTOMIZE NOW</span>
                 <span class="customize-arrow">›</span>
-            </button>
+            </a>
 
         </div>
 
