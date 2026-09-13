@@ -18,6 +18,15 @@ session_start();
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <script
+     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
 </head>
 
 <body>
@@ -33,46 +42,61 @@ session_start();
             </a>
 
             <!-- NAVIGATION -->
-             <nav class="main-navigation">
-             <a href="#home">Home</a>
-             <a href="#about">Our Story</a>
-             <a href="#menu">Menu</a>
+            <nav class="main-navigation">
+
+                <a href="#home">Home</a>
+                <a href="#about">Our Story</a>
+                <a href="#menu">Menu</a>
                 <a href="#contact">Contact</a>
+
             </nav>
 
-            <!-- LOGIN / REGISTER -->
+
+            <!-- CUSTOMER ACTIONS -->
             <div class="auth-buttons">
 
                 <?php if (isset($_SESSION['customer_id'])): ?>
 
-                <!-- LOGOUT -->
-                <a href="logout.php" class="btn login-btn">
-                  <span class="login-icon">👤</span>
-                  Logout
-                </a>
+                    <!-- CART -->
+                    <a href="cart.php" class="btn cart-btn">
+                        <span>🛒</span>
+                        Cart
+                    </a>
+
+                    <!-- MY ORDERS -->
+                    <a href="my_orders.php" class="btn my-orders-btn">
+                        <span class="login-icon">📋</span>
+                        My Orders
+                    </a>
+
+                    <!-- LOGOUT -->
+                    <a href="logout.php" class="btn logout-btn">
+                        <span class="login-icon">👤</span>
+                        Logout
+                    </a>
 
                 <?php else: ?>
 
-                <!-- LOGIN -->
-                <a href="login.php" class="btn login-btn">
-                  <span class="login-icon">👤</span>
-                  Login
-                </a>
+                    <!-- LOGIN -->
+                    <a href="login.php" class="btn login-btn">
+                        <span class="login-icon">👤</span>
+                        Login
+                    </a>
+
+                    <!-- REGISTER -->
+                    <a href="register.php" class="btn register-btn">
+                        <span class="register-icon">👤</span>
+                        Register
+                    </a>
 
                 <?php endif; ?>
-
-
-                <!-- REGISTER - ALWAYS VISIBLE -->
-                <a href="register.php" class="btn register-btn">
-                  <span class="register-icon">👤</span>
-                  Register
-                </a>
 
             </div>
             
         </div>
 
     </header>
+
 
     <!-- ========================================
      HERO / BANNER
@@ -552,13 +576,10 @@ session_start();
             <div class="location-container">
 
 
-                <!-- LEFT: MAP / LOCATION PHOTO -->
+                <!-- LEFT: INTERACTIVE MAP -->
                 <div class="location-map">
 
-                    <img
-                        src="images/location-photo.png"
-                        alt="La Mia Pizzeria Location"
-                    >
+                    <div id="map"></div>
 
                 </div>
 
@@ -579,7 +600,11 @@ session_start();
 
                             <p>
                                 La Mia Pizzeria<br>
-                                Dumaguete City,<br>
+                                Beside 7-Eleven<br>
+                                Alongside Jollibee<br>
+                                Near NORSU MC1<br>
+                                Near West Elementary School<br>
+                                Daro, Dumaguete City<br>
                                 Negros Oriental<br>
                                 Philippines
                             </p>
@@ -627,7 +652,7 @@ session_start();
 
                             <p>
                                 Monday - Sunday<br>
-                                9:00 AM - 8:00 PM
+                                10:00 AM - 8:00 PM
                             </p>
                         </div>
 
@@ -639,10 +664,14 @@ session_start();
 
 
                     <!-- GET DIRECTIONS BUTTON -->
-                    <a href="#" class="directions-button">
+                   <a
+                        href="https://www.google.com/maps/dir/?api=1&amp;destination=9.3118564,123.3046296"
+                        target="_blank"
+                        class="directions-button"
+                    >
                         <span>➤</span>
-                        GET DIRECTIONS
-                        <strong>→</strong>
+                        <strong>GET DIRECTIONS</strong>
+                        <span>→</span>
                     </a>
 
 
@@ -815,6 +844,32 @@ session_start();
         </div>
 
     </footer>
+
+
+    <script>
+       const map = L.map('map').setView(
+        [9.3118564, 123.3046296],
+        18
+    );
+
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }
+        ).addTo(map);
+
+        // La Mia Pizzeria location marker
+        L.marker([9.3118564, 123.3046296])
+        .addTo(map)
+        .bindPopup(`
+            <strong>La Mia Pizzeria</strong><br>
+            Beside 7-Eleven<br>
+            Dumaguete City, Negros Oriental
+        `);
+
+    </script>
 
 
 </body>
