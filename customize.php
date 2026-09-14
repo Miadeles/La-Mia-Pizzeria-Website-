@@ -1,21 +1,20 @@
 <?php
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION['customer_id'])) {
+    if (!isset($_SESSION['customer_id'])) {
 
-    $_SESSION['redirect_after_login'] = 'customize.php';
+        $_SESSION['redirect_after_login'] = 'customize.php';
 
-    header(
-        'Location: login.php?status=error&message=' .
-        urlencode('Please login first before customizing a pizza.')
-    );
+        header(
+            'Location: login.php?status=error&message=' .
+            urlencode('Please login first before customizing a pizza.')
+        );
 
-    exit;
-}
+        exit;
+    }
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -45,8 +44,8 @@ if (!isset($_SESSION['customer_id'])) {
 
 
     <!-- =========================================
-         HEADER
-         ========================================= -->
+        HEADER
+    ========================================= -->
 
     <header class="site-header">
 
@@ -132,8 +131,8 @@ if (!isset($_SESSION['customer_id'])) {
 
 
     <!-- =========================================
-         CUSTOMIZATION PAGE
-         ========================================= -->
+        CUSTOMIZATION PAGE
+    ========================================= -->
 
     <main class="custom-pizza-page">
 
@@ -155,22 +154,22 @@ if (!isset($_SESSION['customer_id'])) {
 
 
         <!-- =========================================
-             CUSTOMIZATION CONTAINER
-             ========================================= -->
+            CUSTOMIZATION CONTAINER
+        ========================================= -->
 
         <section class="custom-pizza-container">
 
 
             <!-- =====================================
-                 LEFT SIDE - CUSTOMIZATION OPTIONS
-                 ===================================== -->
+                LEFT SIDE - CUSTOMIZATION OPTIONS
+            ===================================== -->
 
             <div class="custom-pizza-options">
 
 
                 <!-- =================================
-                     PIZZA SIZE
-                     ================================= -->
+                    PIZZA SIZE
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -250,10 +249,9 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
 
 
-
                 <!-- =================================
-                     SAUCES
-                     ================================= -->
+                    SAUCES
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -343,8 +341,8 @@ if (!isset($_SESSION['customer_id'])) {
 
 
                 <!-- =================================
-                     CHEESE
-                     ================================= -->
+                    CHEESE
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -432,10 +430,9 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
 
 
-
                 <!-- =================================
-                     VEGGIES
-                     ================================= -->
+                    VEGGIES
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -556,10 +553,9 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
 
 
-
                 <!-- =================================
-                     MUSHROOMS
-                     ================================= -->
+                    MUSHROOMS
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -611,7 +607,7 @@ if (!isset($_SESSION['customer_id'])) {
 
                 <!-- =================================
                      MEATS
-                     ================================= -->
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -732,10 +728,9 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
 
 
-
                 <!-- =================================
-                     MORE TOPPINGS
-                     ================================= -->
+                    MORE TOPPINGS
+                ================================= -->
 
                 <div class="custom-section">
 
@@ -857,8 +852,8 @@ if (!isset($_SESSION['customer_id'])) {
 
 
             <!-- =====================================
-                 RIGHT SIDE - ORDER SUMMARY
-                 ===================================== -->
+                RIGHT SIDE - ORDER SUMMARY
+            ===================================== -->
 
             <aside class="custom-pizza-summary">
 
@@ -974,5 +969,6 @@ if (!isset($_SESSION['customer_id'])) {
 
 
 </body>
+
 
 </html>

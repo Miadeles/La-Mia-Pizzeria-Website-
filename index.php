@@ -1,8 +1,9 @@
 <?php
 
-session_start();
+    session_start();
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +30,7 @@ session_start();
 
 </head>
 
+
 <body>
 
     <!-- HEADER -->
@@ -40,6 +42,7 @@ session_start();
             <a href="#home" class="logo">
              <img src="images/logo-primary.png" alt="La Mia Pizzeria">
             </a>
+
 
             <!-- NAVIGATION -->
             <nav class="main-navigation">
@@ -55,27 +58,27 @@ session_start();
             <!-- CUSTOMER ACTIONS -->
             <div class="auth-buttons">
 
-                <?php if (isset($_SESSION['customer_id'])): ?>
+                    <?php if (isset($_SESSION['customer_id'])): ?>
 
-                    <!-- CART -->
-                    <a href="cart.php" class="btn cart-btn">
-                        <span>🛒</span>
-                        Cart
-                    </a>
+                        <!-- CART -->
+                        <a href="cart.php" class="btn cart-btn">
+                            <span>🛒</span>
+                            Cart
+                        </a>
 
-                    <!-- MY ORDERS -->
-                    <a href="my_orders.php" class="btn my-orders-btn">
-                        <span class="login-icon">📋</span>
-                        My Orders
-                    </a>
+                        <!-- MY ORDERS -->
+                        <a href="my_orders.php" class="btn my-orders-btn">
+                            <span class="login-icon">📋</span>
+                            My Orders
+                        </a>
 
-                    <!-- LOGOUT -->
-                    <a href="logout.php" class="btn logout-btn">
-                        <span class="login-icon">👤</span>
-                        Logout
-                    </a>
+                        <!-- LOGOUT -->
+                        <a href="logout.php" class="btn logout-btn">
+                            <span class="login-icon">👤</span>
+                            Logout
+                        </a>
 
-                <?php else: ?>
+                    <?php else: ?>
 
                     <!-- LOGIN -->
                     <a href="login.php" class="btn login-btn">
@@ -99,7 +102,7 @@ session_start();
 
 
     <!-- ========================================
-     HERO / BANNER
+        HERO / BANNER
     ========================================= -->
 
     <section class="hero">
@@ -115,97 +118,105 @@ session_start();
          <span class="arrow">➜</span>
         </a>
 
+    </section>
+
+
+    <!-- =========================================
+        ABOUT LA MIA PIZZERIA
+    ========================================= -->
+
+    <section class="about-section" id="about">
+
+        <div class="about-content">
+
+            <h2>ABOUT LA MIA PIZZERIA</h2>
+
+            <div class="about-subtitle">
+                Freshly crafted with love <span>🍃</span>
+            </div>
+
+            <p>
+                La Mia Pizzeria is a local pick-up and delivery pizza business founded by a young girl from Dumaguete City, Negros Oriental, who dreamed of creating a pizza brand that combines her love for good food, creativity, and the joy of sharing meals with others. Inspired by her name, Mia, and the Bisaya expression "Lami-a!", meaning delicious, La Mia Pizzeria was created with the idea of serving flavorful and satisfying pizzas that customers can conveniently enjoy at home. What began as a small personal dream grew into a pizza business focused on freshly prepared pizzas, quality ingredients, and convenient ordering. Through its pick-up and delivery service, La Mia Pizzeria aims to bring a warm and enjoyable pizza experience to the local community—one delicious slice at a time.
+            </p>
+
+        </div>
 
     </section>
 
-      <!-- =========================================
-      ABOUT LA MIA PIZZERIA
-      ========================================= -->
 
-        <section class="about-section" id="about">
-
-            <div class="about-content">
-
-                <h2>ABOUT LA MIA PIZZERIA</h2>
-
-                <div class="about-subtitle">
-                    Freshly crafted with love <span>🍃</span>
-                </div>
-
-                <p>
-                     La Mia Pizzeria is a local pick-up and delivery pizza business founded by a young girl from Dumaguete City, Negros Oriental, who dreamed of creating a pizza brand that combines her love for good food, creativity, and the joy of sharing meals with others. Inspired by her name, Mia, and the Bisaya expression "Lami-a!", meaning delicious, La Mia Pizzeria was created with the idea of serving flavorful and satisfying pizzas that customers can conveniently enjoy at home. What began as a small personal dream grew into a pizza business focused on freshly prepared pizzas, quality ingredients, and convenient ordering. Through its pick-up and delivery service, La Mia Pizzeria aims to bring a warm and enjoyable pizza experience to the local community—one delicious slice at a time.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================
+    <!-- =========================================
         POPULAR PIZZA
-        ========================================= -->
+    ========================================= -->
 
-        <section class="popular-pizza-section" id="menu">
+    <section class="popular-pizza-section" id="menu">
 
-            <div class="popular-pizza-content">
+        <div class="popular-pizza-content">
 
-                <h2>POPULAR PIZZA</h2>
+            <h2>POPULAR PIZZA</h2>
 
-                    <div class="pizza-grid">
+                <div class="pizza-grid">
 
-                        <!-- 1. PEPPERONI -->
-                        <div class="pizza-card">
-                         <img src="images/pepperoni-pizza.jpg" alt="Pepperoni Pizza">
+                    <!-- 1. PEPPERONI -->
+                    <div class="pizza-card">
+                        <img src="images/pepperoni-pizza.jpg" alt="Pepperoni Pizza">
                         <div class="pizza-name">PEPPERONI PIZZA</div>
                     </div>
 
-                        <!-- 2. MARGHERITA -->
+
+                    <!-- 2. MARGHERITA -->
                         <div class="pizza-card">
                           <img src="images/margherita-pizza.png" alt="Margherita Pizza">
                         <div class="pizza-name">MARGHERITA PIZZA</div>
                     </div>
 
-                        <!-- 3. CREAMY SPINACH -->
+
+                    <!-- 3. CREAMY SPINACH -->
                         <div class="pizza-card">
                           <img src="images/creamy-spinach-pizza.png" alt="Creamy Spinach Pizza">
                         <div class="pizza-name">CREAMY SPINACH PIZZA</div>
                     </div>
 
-                       <!-- 4. NEW YORK STYLE -->
+
+                    <!-- 4. NEW YORK STYLE -->
                        <div class="pizza-card">
                          <img src="images/new-york-style-pizza.png" alt="New York Style Pizza">
                        <div class="pizza-name">NEW YORK STYLE PIZZA</div>
                     </div>
 
-                       <!-- 5. HAWAIIAN -->
+
+                    <!-- 5. HAWAIIAN -->
                        <div class="pizza-card">
                          <img src="images/hawaiian-pizza.png" alt="Hawaiian Pizza">
                        <div class="pizza-name">HAWAIIAN PIZZA</div>
                     </div>
 
-                       <!-- 6. SPINACH & GLAZED BACON -->
+
+                    <!-- 6. SPINACH & GLAZED BACON -->
                        <div class="pizza-card">
                          <img src="images/spinach-and-glazed-baconpizza.png" alt="Spinach and Glazed Bacon Pizza">
                        <div class="pizza-name">SPINACH & GLAZED BACON PIZZA</div>
                     </div>
 
-                       <!-- 7. EXTRAVAGANZZA -->
+
+                    <!-- 7. EXTRAVAGANZZA -->
                        <div class="pizza-card">
                          <img src="images/extravaganzza-pizza.png" alt="Extravaganzza Pizza">
                        <div class="pizza-name">EXTRAVAGANZZA PIZZA</div>
                     </div>
    
-                        <!-- 8. CHEESE MANIA -->
+
+                    <!-- 8. CHEESE MANIA -->
                         <div class="pizza-card">
                          <img src="images/cheese-mania-pizza.png" alt="Cheese Mania Pizza">
                         <div class="pizza-name">CHEESE MANIA PIZZA</div>
                     </div>
 
-                        <!-- 9. AMERICAN BACON & CHEESEBURGER -->
+
+                    <!-- 9. AMERICAN BACON & CHEESEBURGER -->
                         <div class="pizza-card">
                          <img src="images/american-bacon-and-cheeseburger-pizza.png" alt="American Bacon and Cheeseburger Pizza">
                         <div class="pizza-name">AMERICAN BACON & CHEESEBURGER PIZZA</div>
-                     </div>
+                    </div>
 
                 </div>
 
@@ -214,16 +225,16 @@ session_start();
         </section>
 
 
-        <!-- =========================================
-        LA MIA PIZZERIA TIMELINE
-        ========================================= -->
+    <!-- =========================================
+    LA MIA PIZZERIA TIMELINE
+    ========================================= -->
 
-        <section class="timeline-section" id="timeline">
+    <section class="timeline-section" id="timeline">
 
-            <div class="timeline-content">
+        <div class="timeline-content">
 
-                <!-- TITLE -->
-                <h2>LA MIA PIZZERIA</h2>
+            <!-- TITLE -->
+            <h2>LA MIA PIZZERIA</h2>
 
                 <!-- SUBTITLE -->
                 <p class="timeline-intro">
@@ -240,7 +251,7 @@ session_start();
 
 
             <!-- =====================================
-                 1. THE BEGINNING — LEFT
+                1. THE BEGINNING — LEFT
             ====================================== -->
 
             <div class="timeline-item left">
@@ -279,7 +290,7 @@ session_start();
 
 
             <!-- =====================================
-                 2. ONLINE ORDERING — RIGHT
+                2. ONLINE ORDERING — RIGHT
             ====================================== -->
 
             <div class="timeline-item right timeline-item-2">
@@ -318,7 +329,7 @@ session_start();
 
 
             <!-- =====================================
-                 3. GROWING THE MENU — LEFT
+                3. GROWING THE MENU — LEFT
             ====================================== -->
 
             <div class="timeline-item left timeline-item-3">
@@ -357,7 +368,7 @@ session_start();
 
 
             <!-- =====================================
-                 4. EXPANDING DELIVERY — RIGHT
+                4. EXPANDING DELIVERY — RIGHT
             ====================================== -->
 
             <div class="timeline-item right timeline-item-4">
@@ -396,7 +407,7 @@ session_start();
 
 
             <!-- =====================================
-                 5. GROWING LOCAL BRAND — LEFT
+                5. GROWING LOCAL BRAND — LEFT
             ====================================== -->
 
             <div class="timeline-item left timeline-item-5">
@@ -438,9 +449,9 @@ session_start();
     </div>
 
 
-        <!-- =========================================
-            PIZZA CUSTOMIZATION SECTION
-        ========================================= -->
+    <!-- =========================================
+        PIZZA CUSTOMIZATION SECTION
+    ========================================= -->
 
     <section class="pizza-customization-section" id="customize">
 
@@ -550,15 +561,17 @@ session_start();
 
     <section class="location-section" id="contact">
 
-            <!-- BACKGROUND DESIGN -->
-            <img
+        <!-- BACKGROUND DESIGN -->
+        <img
             src="images/location-backdesign.png"
             alt=""
-                class="location-background"
-            >
+            class="location-background"
+        >
 
-            <!-- LOCATION CONTENT -->
-            <div class="location-content">
+
+        <!-- LOCATION CONTENT -->
+        <div class="location-content">
+
 
             <!-- MAIN TITLE -->
             <h2>FIND US</h2>
@@ -741,34 +754,34 @@ session_start();
                 </div>
 
 
-            <!-- INSTAGRAM -->
+                <!-- INSTAGRAM -->
 
-            <div class="social-link">
+                <div class="social-link">
 
-                <img
-                    src="images/instagram-logo.webp"
-                    alt="Instagram"
-                >
+                    <img
+                        src="images/instagram-logo.webp"
+                        alt="Instagram"
+                    >
 
-                <span>@lamia.pizzeria</span>
+                    <span>@lamia.pizzeria</span>
+
+                </div>
+
+
+                <!-- TIKTOK -->
+
+                <div class="social-link">
+
+                    <img
+                        src="images/tiktok-logo.webp"
+                        alt="TikTok"
+                    >
+
+                    <span>@lamiapizzeria</span>
+
+                </div>
 
             </div>
-
-
-            <!-- TIKTOK -->
-
-            <div class="social-link">
-
-                <img
-                    src="images/tiktok-logo.webp"
-                    alt="TikTok"
-                >
-
-                <span>@lamiapizzeria</span>
-
-            </div>
-
-        </div>
 
 
             <!-- =========================================
@@ -847,10 +860,10 @@ session_start();
 
 
     <script>
-       const map = L.map('map').setView(
-        [9.3118564, 123.3046296],
-        18
-    );
+        const map = L.map('map').setView(
+            [9.3118564, 123.3046296],
+            18
+        );
 
         L.tileLayer(
             'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -860,6 +873,7 @@ session_start();
             }
         ).addTo(map);
 
+        
         // La Mia Pizzeria location marker
         L.marker([9.3118564, 123.3046296])
         .addTo(map)

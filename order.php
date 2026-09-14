@@ -1,18 +1,18 @@
 <?php
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION['customer_id'])) {
+    if (!isset($_SESSION['customer_id'])) {
 
-    $_SESSION['redirect_after_login'] = 'order.php';
+        $_SESSION['redirect_after_login'] = 'order.php';
 
-    header(
-        'Location: login.php?status=error&message=' .
-        urlencode('Please login first before ordering a pizza.')
-    );
+        header(
+            'Location: login.php?status=error&message=' .
+            urlencode('Please login first before ordering a pizza.')
+        );
 
-    exit;
-}
+        exit;
+    }
 
 ?>
 
@@ -33,8 +33,8 @@ if (!isset($_SESSION['customer_id'])) {
 <body class="order-page-body">
 
     <!-- =========================================
-         HEADER
-         ========================================= -->
+        HEADER
+    ========================================= -->
 
     <header class="site-header">
         <div class="header-container">
@@ -44,6 +44,7 @@ if (!isset($_SESSION['customer_id'])) {
                 <img src="images/logo-primary.png" alt="La Mia Pizzeria">
             </a>
 
+
             <!-- NAVIGATION -->
             <nav class="main-navigation">
                 <a href="index.php">Home</a>
@@ -51,6 +52,7 @@ if (!isset($_SESSION['customer_id'])) {
                 <a href="index.php#popular-pizza">Menu</a>
                 <a href="index.php#location">Contact</a>
             </nav>
+
 
             <!-- LOGIN / REGISTER -->
             <div class="auth-buttons">
@@ -85,9 +87,10 @@ if (!isset($_SESSION['customer_id'])) {
         </div>
     </header>
 
+
     <!-- =========================================
-         ORDERING PAGE
-         ========================================= -->
+        ORDERING PAGE
+    ========================================= -->
 
     <main class="order-page">
 
@@ -97,15 +100,17 @@ if (!isset($_SESSION['customer_id'])) {
             <p>Choose your favorite pizza and make your order.</p>
         </section>
 
+
         <!-- =========================================
-             PIZZA ORDER GRID
-             ========================================= -->
+            PIZZA ORDER GRID
+        ========================================= -->
 
         <section class="pizza-order-grid">
 
+
             <!-- =====================================
-                 PEPPERONI
-                 ===================================== -->
+                PEPPERONI PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/pepperoni-pizza.jpg" alt="Pepperoni Pizza">
@@ -115,8 +120,8 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Pepperoni</h2>
 
                     <p>
-                        Classic pizza topped with rich tomato sauce,
-                        mozzarella cheese, and delicious pepperoni.
+                        A classic favorite topped with rich tomato sauce,
+                        melted mozzarella cheese, and savory pepperoni slices.
                     </p>
 
                     <div class="pizza-price">₱399</div>
@@ -149,8 +154,9 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
             </div>
 
+
             <!-- =====================================
-                 MARGHERITA
+                MARGHERITA PIZZA
             ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
@@ -161,8 +167,9 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Margherita</h2>
 
                     <p>
-                        A simple classic made with tomato sauce,
-                        mozzarella cheese, and fresh basil.
+                        A favorite made with rich tomato sauce,
+                        melted mozzarella cheese, and fresh basil for a simple,
+                        flavorful bite.
                     </p>
 
                     <div class="pizza-price">₱349</div>
@@ -195,9 +202,10 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
             </div>
 
+
             <!-- =====================================
-                 CREAMY SPINACH
-                 ===================================== -->
+                CREAMY SPINACH PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/creamy-spinach-pizza.png" alt="Creamy Spinach Pizza">
@@ -207,8 +215,8 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Creamy Spinach</h2>
 
                     <p>
-                        Creamy sauce, mozzarella cheese, and
-                        flavorful spinach baked to perfection.
+                        A creamy and flavorful pizza topped with rich sauce,
+                        melted mozzarella cheese, and fresh spinach baked to perfection.
                     </p>
 
                     <div class="pizza-price">₱429</div>
@@ -241,8 +249,9 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
             </div>
 
+
             <!-- =====================================
-                 NEW YORK STYLE
+                NEW YORK STYLE
             ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
@@ -253,8 +262,8 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>New York Style</h2>
 
                     <p>
-                        Thin, foldable crust topped with tomato sauce
-                        and generous mozzarella cheese.
+                        A classic thin and foldable crust topped with rich tomato sauce,
+                        mozzarella cheese, and a simple New York-style flavor.
                     </p>
 
                     <div class="pizza-price">₱449</div>
@@ -287,9 +296,10 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
             </div>
 
+
             <!-- =====================================
-                 HAWAIIAN
-                 ===================================== -->
+                HAWAIIAN PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/hawaiian-pizza.png" alt="Hawaiian Pizza">
@@ -299,8 +309,8 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Hawaiian</h2>
 
                     <p>
-                        A sweet and savory favorite topped with
-                        ham, pineapple, tomato sauce, and mozzarella cheese.
+                        A sweet and savory favorite topped with juicy ham,
+                        pineapple, mozzarella cheese, and rich pizza sauce.
                     </p>
 
                     <div class="pizza-price">₱429</div>
@@ -335,8 +345,8 @@ if (!isset($_SESSION['customer_id'])) {
 
 
             <!-- =====================================
-                 EXTRAVAGANZZA
-                 ===================================== -->
+                EXTRAVAGANZZA PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/extravaganzza-pizza.png" alt="Extravaganzza Pizza">
@@ -346,8 +356,8 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Extravaganzza</h2>
 
                     <p>
-                        A loaded pizza packed with delicious toppings,
-                        mozzarella cheese, and rich tomato sauce.
+                        A loaded pizza packed with savory meats,
+                        fresh toppings, mozzarella cheese, and rich tomato sauce.
                     </p>
 
                     <div class="pizza-price">₱499</div>
@@ -380,9 +390,10 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
             </div>
 
+
             <!-- =====================================
-                 CHEESE MANIA
-                 ===================================== -->
+                CHEESE MANIA PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/cheese-mania-pizza.png" alt="Cheese Mania Pizza">
@@ -392,11 +403,9 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Cheese Mania</h2>
 
                     <p>
-                        A cheesy favorite covered with rich tomato sauce,
-                        mozzarella cheese, and a generous cheese topping.
-                        BSJIBSJBAJXJAXKLNWJ
-                        KXNJSNJCBBSCJXNSXLK.
-                        UUCBUCNKDKCWOIENVIWEN.
+                        A cheesy favorite loaded with tomato sauce,
+                        mozzarella cheese, and a generous blend of creamy,
+                        flavorful cheeses, baked until perfectly melted and golden.
                     </p>
 
                     <div class="pizza-price">₱449</div>
@@ -431,8 +440,8 @@ if (!isset($_SESSION['customer_id'])) {
 
 
             <!-- =====================================
-                 SPINACH & GLAZED BACON
-                 ===================================== -->
+                SPINACH & GLAZED BACON PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/spinach-and-glazed-baconpizza.png" alt="Spinach and Glazed Bacon Pizza">
@@ -442,8 +451,8 @@ if (!isset($_SESSION['customer_id'])) {
                     <h2>Spinach &amp; Glazed Bacon</h2>
 
                     <p>
-                        Flavorful spinach combined with glazed bacon,
-                        mozzarella cheese, and a delicious pizza sauce.
+                        A flavorful spinach and savory glazed bacon,
+                        topped with mozzarella cheese and rich pizza sauce.
                     </p>
 
                     <div class="pizza-price">₱459</div>
@@ -476,9 +485,10 @@ if (!isset($_SESSION['customer_id'])) {
                 </div>
             </div>
 
+
             <!-- =====================================
-                 AMERICAN BACON & CHEESEBURGER
-                 ===================================== -->
+                AMERICAN BACON & CHEESEBURGER PIZZA
+            ===================================== -->
             <div class="pizza-order-card">
                 <div class="pizza-image-container">
                     <img src="images/american-bacon-and-cheeseburger-pizza.png" alt="American Bacon and Cheeseburger Pizza">
@@ -489,7 +499,7 @@ if (!isset($_SESSION['customer_id'])) {
 
                     <p>
                         A hearty combination of savory bacon,
-                        cheeseburger-inspired toppings, tomato sauce, and cheese.
+                        cheeseburger-inspired toppings, mozzarella cheese, and rich pizza sauce.
                     </p>
 
                     <div class="pizza-price">₱479</div>
@@ -519,11 +529,16 @@ if (!isset($_SESSION['customer_id'])) {
                     <button type="button" class="add-cart-btn">
                         ADD TO CART
                     </button>
+
                 </div>
+
             </div>
 
         </section>
+
     </main>
+
+
 
 </body>
 

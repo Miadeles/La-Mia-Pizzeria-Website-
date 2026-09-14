@@ -1,7 +1,7 @@
 <?php
 
-$status  = $_GET['status'] ?? null;
-$message = $_GET['message'] ?? null;
+    $status  = $_GET['status'] ?? null;
+    $message = $_GET['message'] ?? null;
 
 ?>
 

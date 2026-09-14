@@ -1,35 +1,35 @@
 <?php
 
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if (!$id) {
-    header('Location: register.php');
-    exit;
-}
-
-require 'database/config.php';
-
-try {
-    $pdo = getConnection();
-
-    $sql = "SELECT id, username, email, phone
-            FROM customers
-            WHERE id = :id";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $customer = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$customer) {
+    if (!$id) {
         header('Location: register.php');
         exit;
     }
 
-} catch (PDOException $e) {
-    die("Database error: " . $e->getMessage());
-}
+    require 'database/config.php';
+
+    try {
+        $pdo = getConnection();
+
+        $sql = "SELECT id, username, email, phone
+                FROM customers
+                WHERE id = :id";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$customer) {
+            header('Location: register.php');
+            exit;
+        }
+
+    } catch (PDOException $e) {
+        die("Database error: " . $e->getMessage());
+    }
 
 ?>
 
@@ -106,6 +106,7 @@ try {
         </div>
 
     </div>
+
 
 </body>
 

@@ -1,21 +1,21 @@
 <?php
 
-session_start();
+    session_start();
 
 
-$message = $_SESSION['register_error'] ?? null;
+    $message = $_SESSION['register_error'] ?? null;
 
-$username = $_SESSION['register_form']['username'] ?? '';
-$email = $_SESSION['register_form']['email'] ?? '';
-$phone = $_SESSION['register_form']['phone'] ?? '';
+    $username = $_SESSION['register_form']['username'] ?? '';
+    $email = $_SESSION['register_form']['email'] ?? '';
+    $phone = $_SESSION['register_form']['phone'] ?? '';
 
 
-/*
- * Clear temporary registration data
- */
+    /*
+    * Clear temporary registration data
+    */
 
-unset($_SESSION['register_error']);
-unset($_SESSION['register_form']);
+    unset($_SESSION['register_error']);
+    unset($_SESSION['register_form']);
 
 ?>
 
@@ -183,6 +183,7 @@ unset($_SESSION['register_form']);
         </div>
 
     </div>
+
 
 </body>
 

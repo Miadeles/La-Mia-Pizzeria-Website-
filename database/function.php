@@ -22,18 +22,18 @@ $errors = $result['errors'];
 if (!empty($errors)) {
 
     /*
-     * Store validation error temporarily in the session
-     */
+    * Store validation error temporarily in the session
+    */
 
     $_SESSION['register_error'] = implode(' ', $errors);
 
 
     /*
-     * Store username, email, and phone temporarily
-     * so they can be restored on the registration page.
-     *
-     * Password is intentionally NOT stored.
-     */
+    * Store username, email, and phone temporarily
+    * so they can be restored on the registration page.
+    *
+    * Password is intentionally NOT stored.
+    */
 
     $_SESSION['register_form'] = [
         'username' => $_POST['username'] ?? '',
@@ -43,8 +43,8 @@ if (!empty($errors)) {
 
 
     /*
-     * Return to registration page
-     */
+    * Return to registration page
+    */
 
     header('Location: ../register.php');
 
@@ -58,8 +58,8 @@ try {
 
 
     /*
-     * Check if username or email already exists
-     */
+    * Check if username or email already exists
+    */
 
     $checkSql = "
         SELECT id
@@ -96,8 +96,8 @@ try {
 
 
     /*
-     * Securely hash the password
-     */
+    * Securely hash the password
+    */
 
     $hashedPassword = password_hash(
         $result['data']['password'],
@@ -106,8 +106,8 @@ try {
 
 
     /*
-     * Insert new customer
-     */
+    * Insert new customer
+    */
 
     $sql = "
         INSERT INTO customers

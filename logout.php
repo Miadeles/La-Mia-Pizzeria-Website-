@@ -1,11 +1,12 @@
 <?php
 
-session_start();
+    session_start();
 
-session_unset();
-session_destroy();
+    session_unset();
+    session_destroy();
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,15 +19,16 @@ session_destroy();
 
 </head>
 
+
 <body>
 
-<script>
+    <script>
 
-    localStorage.removeItem("pizzaCart");
+        localStorage.removeItem("pizzaCart");
 
-    window.location.href = "index.php";
+        window.location.href = "index.php";
 
-</script>
+    </script>
 
 </body>
 

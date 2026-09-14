@@ -1,72 +1,72 @@
 <?php
 
-session_start();
+    session_start();
 
 
-// =========================================
-// ADMIN LOGIN PROTECTION
-// =========================================
+    // =========================================
+    // ADMIN LOGIN PROTECTION
+    // =========================================
 
-if (
-    !isset($_SESSION['admin_logged_in']) ||
-    $_SESSION['admin_logged_in'] !== true
-) {
+    if (
+        !isset($_SESSION['admin_logged_in']) ||
+        $_SESSION['admin_logged_in'] !== true
+    ) {
 
-    header('Location: login.php');
+        header('Location: login.php');
 
-    exit;
-}
-
-
-// =========================================
-// DATABASE CONNECTION
-// =========================================
-
-require '../database/config.php';
+        exit;
+    }
 
 
-// =========================================
-// GET ALL ORDERS
-// =========================================
+    // =========================================
+    // DATABASE CONNECTION
+    // =========================================
 
-$orders = [];
-
-$databaseError = '';
+    require '../database/config.php';
 
 
-try {
+    // =========================================
+    // GET ALL ORDERS
+    // =========================================
 
-    $pdo = getConnection();
+    $orders = [];
 
-
-    $sql = "
-        SELECT
-            id,
-            order_number,
-            full_name,
-            phone,
-            order_type,
-            payment_method,
-            total_amount,
-            order_status,
-            created_at
-        FROM orders
-        ORDER BY created_at DESC
-    ";
+    $databaseError = '';
 
 
-    $stmt = $pdo->query($sql);
+    try {
+
+        $pdo = getConnection();
 
 
-    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "
+            SELECT
+                id,
+                order_number,
+                full_name,
+                phone,
+                order_type,
+                payment_method,
+                total_amount,
+                order_status,
+                created_at
+            FROM orders
+            ORDER BY created_at DESC
+        ";
 
 
-} catch (PDOException $e) {
+        $stmt = $pdo->query($sql);
 
-    $databaseError =
-        'Unable to load orders. Please try again later.';
 
-}
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    } catch (PDOException $e) {
+
+        $databaseError =
+            'Unable to load orders. Please try again later.';
+
+    }
 
 ?>
 
@@ -106,7 +106,7 @@ try {
 
 
             <!-- =================================
-                 PAGE HEADER
+                PAGE HEADER
             ================================== -->
 
             <div class="checkout-form-card">
@@ -125,9 +125,8 @@ try {
             </div>
 
 
-
             <!-- =================================
-                 DATABASE ERROR
+                DATABASE ERROR
             ================================== -->
 
             <?php if ($databaseError !== ''): ?>
@@ -149,9 +148,8 @@ try {
             <?php endif; ?>
 
 
-
             <!-- =================================
-                 NO ORDERS
+                NO ORDERS
             ================================== -->
 
             <?php if (
@@ -180,9 +178,8 @@ try {
             <?php endif; ?>
 
 
-
             <!-- =================================
-                 ORDER LIST
+                ORDER LIST
             ================================== -->
 
             <?php foreach ($orders as $order): ?>
@@ -213,7 +210,6 @@ try {
                     </div>
 
 
-
                     <!-- CUSTOMER -->
 
                     <div class="receipt-info-row">
@@ -234,7 +230,6 @@ try {
 
 
                     </div>
-
 
 
                     <!-- PHONE -->
@@ -259,7 +254,6 @@ try {
                     </div>
 
 
-
                     <!-- ORDER TYPE -->
 
                     <div class="receipt-info-row">
@@ -282,7 +276,6 @@ try {
 
 
                     </div>
-
 
 
                     <!-- PAYMENT -->
@@ -318,7 +311,6 @@ try {
                     </div>
 
 
-
                     <!-- TOTAL -->
 
                     <div class="receipt-info-row">
@@ -343,7 +335,6 @@ try {
                     </div>
 
 
-
                     <!-- STATUS -->
 
                     <div class="receipt-info-row">
@@ -364,7 +355,6 @@ try {
 
 
                     </div>
-
 
 
                     <!-- DATE -->
@@ -394,7 +384,6 @@ try {
                     </div>
 
 
-
                     <!-- VIEW ORDER -->
 
                     <div class="checkout-place-order">
@@ -419,7 +408,7 @@ try {
 
 
             <!-- =================================
-                 BACK TO DASHBOARD
+                BACK TO DASHBOARD
             ================================== -->
 
             <div class="checkout-place-order">
@@ -443,5 +432,4 @@ try {
 
 
 </body>
-
 </html>

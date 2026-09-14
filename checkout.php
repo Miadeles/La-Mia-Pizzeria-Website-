@@ -2,27 +2,26 @@
 
 session_start();
 
-if (!isset($_SESSION['customer_id'])) {
+    if (!isset($_SESSION['customer_id'])) {
 
-    $_SESSION['redirect_after_login'] = 'checkout.php';
+        $_SESSION['redirect_after_login'] = 'checkout.php';
 
-    header(
-        'Location: login.php?status=error&message=' .
-        urlencode('Please login first before checkout.')
-    );
+        header(
+            'Location: login.php?status=error&message=' .
+            urlencode('Please login first before checkout.')
+        );
 
-    exit;
-}
+        exit;
+    }
 
-$checkoutErrors = $_SESSION['checkout_errors'] ?? [];
+    $checkoutErrors = $_SESSION['checkout_errors'] ?? [];
 
-$checkoutForm = $_SESSION['checkout_form'] ?? [];
+    $checkoutForm = $_SESSION['checkout_form'] ?? [];
 
-unset($_SESSION['checkout_errors']);
-unset($_SESSION['checkout_form']);
+    unset($_SESSION['checkout_errors']);
+    unset($_SESSION['checkout_form']);
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -33,7 +32,7 @@ unset($_SESSION['checkout_form']);
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0">
 
     <title>Checkout - La Mia Pizzeria</title>
 
@@ -46,7 +45,7 @@ unset($_SESSION['checkout_form']);
 
 
     <!-- =========================================
-         HEADER
+        HEADER
     ========================================= -->
 
     <header class="site-header">
@@ -59,7 +58,7 @@ unset($_SESSION['checkout_form']);
             <a href="index.php" class="logo">
 
                 <img src="images/logo-primary.png"
-                     alt="La Mia Pizzeria">
+                    alt="La Mia Pizzeria">
 
             </a>
 
@@ -151,7 +150,7 @@ unset($_SESSION['checkout_form']);
 
 
     <!-- =========================================
-         CHECKOUT PAGE
+        CHECKOUT PAGE
     ========================================= -->
 
     <main class="checkout-page">
@@ -173,44 +172,44 @@ unset($_SESSION['checkout_form']);
 
 
 
-            <!-- =========================================
-                CHECKOUT CONTAINER
-            ========================================= -->
+        <!-- =========================================
+            CHECKOUT CONTAINER
+        ========================================= -->
 
-            <section class="checkout-container">
+        <section class="checkout-container">
 
-                <?php if (!empty($checkoutErrors)): ?>
+            <?php if (!empty($checkoutErrors)): ?>
 
-                    <div class="checkout-error">
+                <div class="checkout-error">
 
-                        <?php foreach ($checkoutErrors as $error): ?>
+                    <?php foreach ($checkoutErrors as $error): ?>
 
-                            <p>
-                        <?= htmlspecialchars($error) ?>
-                    </p>
+                        <p>
+                           <?= htmlspecialchars($error) ?>
+                        </p>
 
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-            </div>
+                </div>
 
-        <?php endif; ?>
+            <?php endif; ?>
 
 
             <!-- =====================================
-                 CHECKOUT FORM
+                CHECKOUT FORM
             ====================================== -->
 
             <form method="POST"
-                  action="place_order.php"
-                  id="checkout-form">
+                action="place_order.php"
+                id="checkout-form">
 
-                  <input type="hidden" 
-                         name="cart_data" 
-                         id="cart-data">
+                <input type="hidden" 
+                name="cart_data" 
+                id="cart-data">
 
 
                 <!-- =================================
-                     ORDER SUMMARY
+                    ORDER SUMMARY
                 ================================== -->
 
                 <div class="checkout-order">
@@ -241,9 +240,8 @@ unset($_SESSION['checkout_form']);
                 </div>
 
 
-
                 <!-- =================================
-                     CUSTOMER INFORMATION
+                    CUSTOMER INFORMATION
                 ================================== -->
 
                 <div class="checkout-form-card">
@@ -297,9 +295,8 @@ unset($_SESSION['checkout_form']);
                 </div>
 
 
-
                 <!-- =================================
-                     ORDER TYPE
+                    ORDER TYPE
                 ================================== -->
 
                 <div class="checkout-form-card">
@@ -352,13 +349,12 @@ unset($_SESSION['checkout_form']);
                 </div>
 
 
-
                 <!-- =================================
-                     DELIVERY ADDRESS
+                    DELIVERY ADDRESS
                 ================================== -->
 
                 <div class="checkout-form-card"
-                     id="delivery-address-section">
+                    id="delivery-address-section">
 
 
                     <h2>
@@ -391,7 +387,6 @@ unset($_SESSION['checkout_form']);
                     </div>
 
 
-
                     <!-- STREET / PUROK -->
 
                     <div class="checkout-form-group">
@@ -409,7 +404,6 @@ unset($_SESSION['checkout_form']);
                         >
 
                     </div>
-
 
 
                     <!-- BARANGAY -->
@@ -431,7 +425,6 @@ unset($_SESSION['checkout_form']);
                     </div>
 
 
-
                     <!-- CITY -->
 
                     <div class="checkout-form-group">
@@ -449,7 +442,6 @@ unset($_SESSION['checkout_form']);
                         >
 
                     </div>
-
 
 
                     <!-- ORDER NOTES -->
@@ -474,9 +466,8 @@ unset($_SESSION['checkout_form']);
                 </div>
 
 
-
                 <!-- =================================
-                     MODE OF PAYMENT
+                    MODE OF PAYMENT
                 ================================== -->
 
                 <div class="checkout-form-card payment-card">
@@ -535,7 +526,7 @@ unset($_SESSION['checkout_form']);
 
 
                 <!-- =================================
-                     PLACE ORDER
+                    PLACE ORDER
                 ================================== -->
 
                 <div class="checkout-place-order">
@@ -560,14 +551,12 @@ unset($_SESSION['checkout_form']);
 
     </main>
 
-
-
     <!-- =========================================
-         JAVASCRIPT
+        JAVASCRIPT
     ========================================= -->
 
     <script src="script.js?v=2"
-            defer>
+        defer>
     </script>
 
 

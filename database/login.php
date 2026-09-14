@@ -6,8 +6,8 @@ require 'config.php';
 
 
 /*
- * Make sure the login form was submitted
- */
+* Make sure the login form was submitted
+*/
 
 if (!isset($_POST['login_button'])) {
 
@@ -18,16 +18,16 @@ if (!isset($_POST['login_button'])) {
 
 
 /*
- * Get login information
- */
+* Get login information
+*/
 
 $login = trim($_POST['login'] ?? '');
 $password = $_POST['password'] ?? '';
 
 
 /*
- * Check that both fields were entered
- */
+* Check that both fields were entered
+*/
 
 if ($login === '' || $password === '') {
 
@@ -46,8 +46,8 @@ try {
 
 
     /*
-     * Find customer using either username OR email
-     */
+    * Find customer using either username OR email
+    */
 
     $sql = "
         SELECT id, username, email, phone, password
@@ -72,8 +72,8 @@ try {
 
 
     /*
-     * Check customer and password
-     */
+    * Check customer and password
+    */
 
     if (
         !$customer ||
@@ -90,8 +90,8 @@ try {
 
 
     /*
-     * Store customer information in the session
-     */
+    * Store customer information in the session
+    */
 
     $_SESSION['customer_id'] = $customer['id'];
     $_SESSION['username'] = $customer['username'];
@@ -111,6 +111,7 @@ try {
 
     exit;
 
+
 } catch (PDOException $e) {
 
     header(
@@ -118,5 +119,7 @@ try {
         . urlencode('Unable to process login. Please try again.')
     );
 
+
     exit;
+
 }

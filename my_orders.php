@@ -1,89 +1,90 @@
 <?php
 
-session_start();
+    session_start();
 
 
-// =========================================
-// LOGIN PROTECTION
-// =========================================
+    // =========================================
+    // LOGIN PROTECTION
+    // =========================================
 
-if (!isset($_SESSION['customer_id'])) {
+    if (!isset($_SESSION['customer_id'])) {
 
-    $_SESSION['redirect_after_login'] = 'my_orders.php';
+        $_SESSION['redirect_after_login'] = 'my_orders.php';
 
-    header(
-        'Location: login.php?status=error&message=' .
-        urlencode('Please login first to view your orders.')
-    );
+        header(
+            'Location: login.php?status=error&message=' .
+            urlencode('Please login first to view your orders.')
+        );
 
-    exit;
-}
-
-
-// =========================================
-// DATABASE CONNECTION
-// =========================================
-
-require 'database/config.php';
+        exit;
+    }
 
 
-// =========================================
-// GET LOGGED-IN CUSTOMER ID
-// =========================================
+    // =========================================
+    // DATABASE CONNECTION
+    // =========================================
 
-$customerId = (int) $_SESSION['customer_id'];
-
-
-// =========================================
-// GET CUSTOMER ORDERS
-// =========================================
-
-try {
-
-    $pdo = getConnection();
+    require 'database/config.php';
 
 
-    $sql = "
-        SELECT
-            id,
-            order_number,
-            order_type,
-            payment_method,
-            total_amount,
-            order_status,
-            created_at
-        FROM orders
-        WHERE customer_id = :customer_id
-        ORDER BY created_at DESC
-    ";
+    // =========================================
+    // GET LOGGED-IN CUSTOMER ID
+    // =========================================
+
+    $customerId = (int) $_SESSION['customer_id'];
 
 
-    $stmt = $pdo->prepare($sql);
+    // =========================================
+    // GET CUSTOMER ORDERS
+    // =========================================
+
+    try {
+
+        $pdo = getConnection();
 
 
-    $stmt->bindValue(
-        ':customer_id',
-        $customerId,
-        PDO::PARAM_INT
-    );
+        $sql = "
+            SELECT
+                id,
+                order_number,
+                order_type,
+                payment_method,
+                total_amount,
+                order_status,
+                created_at
+            FROM orders
+            WHERE customer_id = :customer_id
+            ORDER BY created_at DESC
+        ";
 
 
-    $stmt->execute();
+        $stmt = $pdo->prepare($sql);
 
 
-    $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->bindValue(
+            ':customer_id',
+            $customerId,
+            PDO::PARAM_INT
+        );
 
 
-} catch (PDOException $e) {
+        $stmt->execute();
 
-    $orders = [];
 
-    $databaseError =
-        'Unable to load your orders. Please try again later.';
+        $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-}
+
+    } catch (PDOException $e) {
+
+        $orders = [];
+
+        $databaseError =
+            'Unable to load your orders. Please try again later.';
+
+    }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -120,7 +121,7 @@ try {
 
 
             <!-- =================================
-                 PAGE HEADER
+                PAGE HEADER
             ================================== -->
 
             <div class="checkout-form-card">
@@ -140,9 +141,8 @@ try {
             </div>
 
 
-
             <!-- =================================
-                 DATABASE ERROR
+                DATABASE ERROR
             ================================== -->
 
             <?php if (isset($databaseError)): ?>
@@ -162,9 +162,8 @@ try {
             <?php endif; ?>
 
 
-
             <!-- =================================
-                 NO ORDERS
+                NO ORDERS
             ================================== -->
 
             <?php if (
@@ -206,9 +205,8 @@ try {
             <?php endif; ?>
 
 
-
             <!-- =================================
-                 ORDER LIST
+                ORDER LIST
             ================================== -->
 
             <?php foreach ($orders as $order): ?>
@@ -237,7 +235,6 @@ try {
                     </div>
 
 
-
                     <!-- DATE -->
 
                     <div class="receipt-info-row">
@@ -263,7 +260,6 @@ try {
                     </div>
 
 
-
                     <!-- ORDER TYPE -->
 
                     <div class="receipt-info-row">
@@ -284,7 +280,6 @@ try {
                         </strong>
 
                     </div>
-
 
 
                     <!-- PAYMENT -->
@@ -316,7 +311,6 @@ try {
                     </div>
 
 
-
                     <!-- TOTAL -->
 
                     <div class="receipt-info-row">
@@ -339,7 +333,6 @@ try {
                     </div>
 
 
-
                     <!-- STATUS -->
 
                     <div class="receipt-info-row">
@@ -358,7 +351,6 @@ try {
                         </strong>
 
                     </div>
-
 
 
                     <!-- VIEW ORDER -->
@@ -385,7 +377,7 @@ try {
 
 
             <!-- =================================
-                 BACK HOME
+                BACK HOME
             ================================== -->
 
             <div class="checkout-place-order">

@@ -1,27 +1,29 @@
 <?php
 
-session_start();
+    session_start();
 
 
-// =========================================
-// IF ADMIN IS ALREADY LOGGED IN
-// =========================================
+    // =========================================
+    // IF ADMIN IS ALREADY LOGGED IN
+    // =========================================
 
-if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
 
-    header('Location: index.php');
-    exit;
+        header('Location: index.php');
+        exit;
 
-}
+    }
 
 
-// =========================================
-// GET LOGIN MESSAGE
-// =========================================
+    // =========================================
+    // GET LOGIN MESSAGE
+    // =========================================
 
-$message = $_GET['message'] ?? '';
+    $message = $_GET['message'] ?? '';
 
+    
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,49 +55,47 @@ $message = $_GET['message'] ?? '';
     <main class="checkout-page">
 
 
-        <section class="checkout-container">
-
-
-            <!-- =================================
-                 ADMIN LOGIN CARD
-            ================================== -->
-
-            <div class="checkout-form-card">
-
-
-                <h1>
-                    ADMIN LOGIN
-                </h1>
-
-
-                <p>
-                    Login to manage La Mia Pizzeria orders.
-                </p>
-
+            <section class="checkout-container">
 
 
                 <!-- =================================
-                     ERROR MESSAGE
+                    ADMIN LOGIN CARD
                 ================================== -->
 
-                <?php if ($message !== ''): ?>
+                <div class="checkout-form-card">
+
+
+                    <h1>
+                        ADMIN LOGIN
+                    </h1>
+
 
                     <p>
-                        <?= htmlspecialchars($message) ?>
+                        Login to manage La Mia Pizzeria orders.
                     </p>
 
-                <?php endif; ?>
+
+                    <!-- =================================
+                        ERROR MESSAGE
+                    ================================== -->
+
+                    <?php if ($message !== ''): ?>
+
+                        <p>
+                            <?= htmlspecialchars($message) ?>
+                        </p>
+
+                    <?php endif; ?>
 
 
+                    <!-- =================================
+                        LOGIN FORM
+                    ================================== -->
 
-                <!-- =================================
-                     LOGIN FORM
-                ================================== -->
-
-                <form
-                    action="login_process.php"
-                    method="POST"
-                >
+                    <form
+                        action="login_process.php"
+                        method="POST"
+                    >
 
 
                     <!-- USERNAME -->
@@ -117,7 +117,6 @@ $message = $_GET['message'] ?? '';
                     </div>
 
 
-
                     <!-- PASSWORD -->
 
                     <div class="checkout-form-group">
@@ -135,7 +134,6 @@ $message = $_GET['message'] ?? '';
                         >
 
                     </div>
-
 
 
                     <!-- LOGIN BUTTON -->
@@ -159,9 +157,8 @@ $message = $_GET['message'] ?? '';
             </div>
 
 
-
             <!-- =================================
-                 BACK TO WEBSITE
+                BACK TO WEBSITE
             ================================== -->
 
             <div class="checkout-place-order">
@@ -183,5 +180,6 @@ $message = $_GET['message'] ?? '';
 
 
 </body>
+
 
 </html>

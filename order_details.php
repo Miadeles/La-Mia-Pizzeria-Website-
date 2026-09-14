@@ -1,105 +1,110 @@
 <?php
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION['customer_id'])) {
-    $_SESSION['redirect_after_login'] = 'my_orders.php';
+    if (!isset($_SESSION['customer_id'])) {
+        $_SESSION['redirect_after_login'] = 'my_orders.php';
 
-    header(
-        'Location: login.php?status=error&message=' .
-        urlencode('Please login first to view your order.')
-    );
-    exit;
-}
-
-require 'database/config.php';
-
-$customerId = (int) $_SESSION['customer_id'];
-$orderId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-
-if (!$orderId || $orderId <= 0) {
-    header(
-        'Location: my_orders.php?status=error&message=' .
-        urlencode('Invalid order.')
-    );
-    exit;
-}
-
-try {
-    $pdo = getConnection();
-
-    /* =================================
-       GET CUSTOMER'S ORDER
-    ================================== */
-
-    $sql = "
-        SELECT
-            id,
-            order_number,
-            full_name,
-            phone,
-            order_type,
-            house_number,
-            street,
-            barangay,
-            city,
-            order_notes,
-            payment_method,
-            total_amount,
-            order_status,
-            created_at
-        FROM orders
-        WHERE id = :order_id
-          AND customer_id = :customer_id
-        LIMIT 1
-    ";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(':order_id', $orderId, PDO::PARAM_INT);
-    $stmt->bindValue(':customer_id', $customerId, PDO::PARAM_INT);
-    $stmt->execute();
-
-    $order = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$order) {
         header(
-            'Location: my_orders.php?status=error&message=' .
-            urlencode('Order not found.')
+            'Location: login.php?status=error&message=' .
+            urlencode('Please login first to view your order.')
         );
         exit;
     }
 
-    /* =================================
-       GET ORDER ITEMS
-    ================================== */
+    require 'database/config.php';
 
-    $itemSql = "
-        SELECT
-            id,
-            pizza_name,
-            pizza_size,
-            quantity,
-            unit_price,
-            sauce,
-            toppings,
-            item_total
-        FROM order_items
-        WHERE order_id = :order_id
-        ORDER BY id ASC
-    ";
+    $customerId = (int) $_SESSION['customer_id'];
+    $orderId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-    $itemStmt = $pdo->prepare($itemSql);
-    $itemStmt->bindValue(':order_id', $orderId, PDO::PARAM_INT);
-    $itemStmt->execute();
+    if (!$orderId || $orderId <= 0) {
+        header(
+            'Location: my_orders.php?status=error&message=' .
+            urlencode('Invalid order.')
+        );
+        exit;
+    }
 
-    $items = $itemStmt->fetchAll(PDO::FETCH_ASSOC);
 
-} catch (PDOException $e) {
+    try {
+        $pdo = getConnection();
 
-    die('Unable to load order details. Please try again later.');
-}
+        /* =================================
+        GET CUSTOMER'S ORDER
+        ================================== */
+
+        $sql = "
+            SELECT
+                id,
+                order_number,
+                full_name,
+                phone,
+                order_type,
+                house_number,
+                street,
+                barangay,
+                city,
+                order_notes,
+                payment_method,
+                total_amount,
+                order_status,
+                created_at
+            FROM orders
+            WHERE id = :order_id
+            AND customer_id = :customer_id
+            LIMIT 1
+        ";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':order_id', $orderId, PDO::PARAM_INT);
+        $stmt->bindValue(':customer_id', $customerId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$order) {
+            header(
+                'Location: my_orders.php?status=error&message=' .
+                urlencode('Order not found.')
+            );
+            exit;
+        }
+
+
+
+        /* =================================
+        GET ORDER ITEMS
+        ================================== */
+
+        $itemSql = "
+            SELECT
+                id,
+                pizza_name,
+                pizza_size,
+                quantity,
+                unit_price,
+                sauce,
+                toppings,
+                item_total
+            FROM order_items
+            WHERE order_id = :order_id
+            ORDER BY id ASC
+        ";
+
+        $itemStmt = $pdo->prepare($itemSql);
+        $itemStmt->bindValue(':order_id', $orderId, PDO::PARAM_INT);
+        $itemStmt->execute();
+
+        $items = $itemStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    } catch (PDOException $e) {
+
+        die('Unable to load order details. Please try again later.');
+    }
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -122,10 +127,11 @@ try {
 
 </head>
 
+
 <body class="cart-page-body">
 
     <!-- =================================
-         HEADER
+        HEADER
     ================================== -->
 
     <header class="checkout-header">
@@ -152,7 +158,7 @@ try {
 
 
     <!-- =================================
-         ORDER DETAILS
+        ORDER DETAILS
     ================================== -->
 
     <main class="checkout-page">
@@ -219,7 +225,7 @@ try {
 
 
             <!-- =================================
-                 CUSTOMER INFORMATION
+                CUSTOMER INFORMATION
             ================================== -->
 
             <div class="checkout-form-card">
@@ -250,7 +256,7 @@ try {
 
 
             <!-- =================================
-                 DELIVERY ADDRESS
+                DELIVERY ADDRESS
             ================================== -->
 
             <?php if (strtolower($order['order_type']) === 'delivery'): ?>
@@ -305,7 +311,7 @@ try {
 
 
             <!-- =================================
-                 ORDER NOTES
+                ORDER NOTES
             ================================== -->
 
             <?php if (!empty($order['order_notes'])): ?>
@@ -324,7 +330,7 @@ try {
 
 
             <!-- =================================
-                 ORDERED PIZZAS
+                ORDERED PIZZAS
             ================================== -->
 
             <div class="checkout-form-card">
@@ -406,7 +412,7 @@ try {
 
 
             <!-- =================================
-                 ORDER TOTAL
+                ORDER TOTAL
             ================================== -->
 
             <div class="checkout-form-card">
@@ -428,7 +434,7 @@ try {
 
 
             <!-- =================================
-                 BACK BUTTON
+                BACK BUTTON
             ================================== -->
 
             <div class="checkout-place-order">
@@ -448,7 +454,7 @@ try {
 
 
     <!-- =================================
-         FOOTER
+        FOOTER
     ================================== -->
 
     <footer>

@@ -7,6 +7,7 @@ function getConnection(): PDO
     $user = 'root';
     $pass = '';
 
+
     try {
         $pdo = new PDO(
             "mysql:host=$host;dbname=$db;charset=utf8mb4",
@@ -20,4 +21,5 @@ function getConnection(): PDO
     } catch (PDOException $e) {
         die("Connection failed: " . $e->getMessage());
     }
+    
 }

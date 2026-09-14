@@ -96,7 +96,6 @@ if (!in_array($newStatus, $allowedStatuses, true)) {
 
 require '../database/config.php';
 
-
 try {
 
     $pdo = getConnection();

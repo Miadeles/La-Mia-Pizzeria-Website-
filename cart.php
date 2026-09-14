@@ -1,21 +1,20 @@
 <?php
 
-session_start();
+    session_start();
 
-if (!isset($_SESSION['customer_id'])) {
+    if (!isset($_SESSION['customer_id'])) {
 
-    $_SESSION['redirect_after_login'] = 'cart.php';
+        $_SESSION['redirect_after_login'] = 'cart.php';
 
-    header(
-        'Location: login.php?status=error&message=' .
-        urlencode('Please login first to view your cart.')
-    );
+        header(
+            'Location: login.php?status=error&message=' .
+            urlencode('Please login first to view your cart.')
+        );
 
-    exit;
-}
+        exit;
+    }
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -30,11 +29,12 @@ if (!isset($_SESSION['customer_id'])) {
     <link rel="stylesheet" href="style.css?v=7">
 </head>
 
+
 <body class="cart-page-body">
 
-        <!-- =========================================
-         HEADER
-        ========================================= -->
+    <!-- =========================================
+        HEADER
+    ========================================= -->
 
     <header class="site-header">
 
@@ -92,9 +92,9 @@ if (!isset($_SESSION['customer_id'])) {
     </header>
 
 
-        <!-- =========================================
-         CART
-        ========================================= -->
+    <!-- =========================================
+        CART
+    ========================================= -->
 
     <main class="cart-page">
 
@@ -149,11 +149,12 @@ if (!isset($_SESSION['customer_id'])) {
 
 
     <!-- =========================================
-         CART JAVASCRIPT
-         ========================================= -->
+        CART JAVASCRIPT
+    ========================================= -->
 
     <script src="script.js?v=2" defer></script>
 
+    
 </body>
 
 </html>

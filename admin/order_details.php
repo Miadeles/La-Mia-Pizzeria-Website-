@@ -1,114 +1,52 @@
 <?php
 
-session_start();
+    session_start();
 
 
-// =========================================
-// ADMIN LOGIN PROTECTION
-// =========================================
+    // =========================================
+    // ADMIN LOGIN PROTECTION
+    // =========================================
 
-if (
-    !isset($_SESSION['admin_logged_in']) ||
-    $_SESSION['admin_logged_in'] !== true
-) {
+    if (
+        !isset($_SESSION['admin_logged_in']) ||
+        $_SESSION['admin_logged_in'] !== true
+    ) {
 
-    header('Location: login.php');
+        header('Location: login.php');
 
-    exit;
-}
-
-
-// =========================================
-// DATABASE CONNECTION
-// =========================================
-
-require '../database/config.php';
+        exit;
+    }
 
 
-// =========================================
-// GET ORDER ID
-// =========================================
+    // =========================================
+    // DATABASE CONNECTION
+    // =========================================
 
-$orderId = filter_input(
-    INPUT_GET,
-    'id',
-    FILTER_VALIDATE_INT
-);
-
-$message = $_GET['message'] ?? '';
+    require '../database/config.php';
 
 
-// =========================================
-// CHECK ORDER ID
-// =========================================
+    // =========================================
+    // GET ORDER ID
+    // =========================================
 
-if (!$orderId || $orderId <= 0) {
-
-    header(
-        'Location: orders.php?message=' .
-        urlencode('Invalid order.')
+    $orderId = filter_input(
+        INPUT_GET,
+        'id',
+        FILTER_VALIDATE_INT
     );
 
-    exit;
-}
+    $message = $_GET['message'] ?? '';
 
 
-// =========================================
-// GET ORDER DETAILS
-// =========================================
+    // =========================================
+    // CHECK ORDER ID
+    // =========================================
 
-try {
-
-    $pdo = getConnection();
-
-
-    $sql = "
-        SELECT
-            id,
-            order_number,
-            full_name,
-            phone,
-            order_type,
-            house_number,
-            street,
-            barangay,
-            city,
-            order_notes,
-            payment_method,
-            total_amount,
-            order_status,
-            created_at
-        FROM orders
-        WHERE id = :order_id
-        LIMIT 1
-    ";
-
-
-    $stmt = $pdo->prepare($sql);
-
-
-    $stmt->bindValue(
-        ':order_id',
-        $orderId,
-        PDO::PARAM_INT
-    );
-
-
-    $stmt->execute();
-
-
-    $order = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-    // -----------------------------------------
-    // ORDER NOT FOUND
-    // -----------------------------------------
-
-    if (!$order) {
+    if (!$orderId || $orderId <= 0) {
 
         header(
             'Location: orders.php?message=' .
-            urlencode('Order not found.')
+            urlencode('Invalid order.')
         );
 
         exit;
@@ -116,52 +54,114 @@ try {
 
 
     // =========================================
-    // GET ORDER ITEMS
+    // GET ORDER DETAILS
     // =========================================
 
-    $itemSql = "
-        SELECT
-            id,
-            pizza_name,
-            pizza_size,
-            quantity,
-            unit_price,
-            sauce,
-            toppings,
-            item_total
-        FROM order_items
-        WHERE order_id = :order_id
-        ORDER BY id ASC
-    ";
+    try {
+
+        $pdo = getConnection();
 
 
-    $itemStmt = $pdo->prepare($itemSql);
+        $sql = "
+            SELECT
+                id,
+                order_number,
+                full_name,
+                phone,
+                order_type,
+                house_number,
+                street,
+                barangay,
+                city,
+                order_notes,
+                payment_method,
+                total_amount,
+                order_status,
+                created_at
+            FROM orders
+            WHERE id = :order_id
+            LIMIT 1
+        ";
 
 
-    $itemStmt->bindValue(
-        ':order_id',
-        $orderId,
-        PDO::PARAM_INT
-    );
+        $stmt = $pdo->prepare($sql);
 
 
-    $itemStmt->execute();
+        $stmt->bindValue(
+            ':order_id',
+            $orderId,
+            PDO::PARAM_INT
+        );
 
 
-    $orderItems = $itemStmt->fetchAll(
-        PDO::FETCH_ASSOC
-    );
+        $stmt->execute();
 
 
-} catch (PDOException $e) {
+        $order = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    header(
-        'Location: orders.php?message=' .
-        urlencode('Unable to load order details.')
-    );
 
-    exit;
-}
+        // -----------------------------------------
+        // ORDER NOT FOUND
+        // -----------------------------------------
+
+        if (!$order) {
+
+            header(
+                'Location: orders.php?message=' .
+                urlencode('Order not found.')
+            );
+
+            exit;
+        }
+
+
+        // =========================================
+        // GET ORDER ITEMS
+        // =========================================
+
+        $itemSql = "
+            SELECT
+                id,
+                pizza_name,
+                pizza_size,
+                quantity,
+                unit_price,
+                sauce,
+                toppings,
+                item_total
+            FROM order_items
+            WHERE order_id = :order_id
+            ORDER BY id ASC
+        ";
+
+
+        $itemStmt = $pdo->prepare($itemSql);
+
+
+        $itemStmt->bindValue(
+            ':order_id',
+            $orderId,
+            PDO::PARAM_INT
+        );
+
+
+        $itemStmt->execute();
+
+
+        $orderItems = $itemStmt->fetchAll(
+            PDO::FETCH_ASSOC
+        );
+
+
+    } catch (PDOException $e) {
+
+        header(
+            'Location: orders.php?message=' .
+            urlencode('Unable to load order details.')
+        );
+
+        exit;
+    }
 
 ?>
 
@@ -201,7 +201,7 @@ try {
 
 
             <!-- =================================
-                 PAGE HEADER
+                PAGE HEADER
             ================================== -->
 
             <div class="checkout-form-card">
@@ -242,9 +242,8 @@ try {
             <?php endif; ?>
 
 
-
             <!-- =================================
-                 ORDER INFORMATION
+                ORDER INFORMATION
             ================================== -->
 
             <div class="checkout-form-card">
@@ -253,7 +252,6 @@ try {
                 <h2>
                     ORDER INFORMATION
                 </h2>
-
 
 
                 <!-- ORDER NUMBER -->
@@ -274,7 +272,6 @@ try {
                     </strong>
 
                 </div>
-
 
 
                 <!-- DATE -->
@@ -302,7 +299,6 @@ try {
                 </div>
 
 
-
                 <!-- STATUS -->
 
                 <div class="receipt-info-row">
@@ -321,7 +317,6 @@ try {
                     </strong>
 
                 </div>
-
 
 
                 <!-- ORDER TYPE -->
@@ -379,9 +374,8 @@ try {
             </div>
 
 
-
             <!-- =================================
-                 CUSTOMER INFORMATION
+                CUSTOMER INFORMATION
             ================================== -->
 
             <div class="checkout-form-card">
@@ -390,7 +384,6 @@ try {
                 <h2>
                     CUSTOMER INFORMATION
                 </h2>
-
 
 
                 <!-- FULL NAME -->
@@ -413,7 +406,6 @@ try {
                 </div>
 
 
-
                 <!-- PHONE -->
 
                 <div class="receipt-info-row">
@@ -434,9 +426,8 @@ try {
                 </div>
 
 
-
                 <!-- =================================
-                     DELIVERY ADDRESS
+                    DELIVERY ADDRESS
                 ================================== -->
 
                 <?php if (
@@ -465,7 +456,6 @@ try {
                     </div>
 
 
-
                     <div class="receipt-info-row">
 
                         <span>
@@ -485,7 +475,6 @@ try {
                     </div>
 
 
-
                     <div class="receipt-info-row">
 
                         <span>
@@ -503,7 +492,6 @@ try {
                         </strong>
 
                     </div>
-
 
 
                     <div class="receipt-info-row">
@@ -533,7 +521,7 @@ try {
 
 
             <!-- =================================
-                 ORDER NOTES
+                ORDER NOTES
             ================================== -->
 
             <?php if (
@@ -570,7 +558,7 @@ try {
 
 
             <!-- =================================
-                 ORDERED PIZZAS
+                ORDERED PIZZAS
             ================================== -->
 
             <div class="checkout-form-card">
@@ -579,7 +567,6 @@ try {
                 <h2>
                     ORDERED PIZZAS
                 </h2>
-
 
 
                 <?php foreach (
@@ -614,7 +601,6 @@ try {
                         </div>
 
 
-
                         <!-- SIZE -->
 
                         <div class="receipt-info-row">
@@ -637,7 +623,6 @@ try {
                         </div>
 
 
-
                         <!-- QUANTITY -->
 
                         <div class="receipt-info-row">
@@ -655,7 +640,6 @@ try {
                             </strong>
 
                         </div>
-
 
 
                         <!-- UNIT PRICE -->
@@ -680,9 +664,8 @@ try {
                         </div>
 
 
-
                         <!-- =================================
-                             CUSTOM SAUCE
+                            CUSTOM SAUCE
                         ================================== -->
 
                         <?php if (
@@ -713,9 +696,8 @@ try {
                         <?php endif; ?>
 
 
-
                         <!-- =================================
-                             CUSTOM TOPPINGS
+                            CUSTOM TOPPINGS
                         ================================== -->
 
                         <?php if (
@@ -744,7 +726,6 @@ try {
 
 
                         <?php endif; ?>
-
 
 
                         <!-- ITEM TOTAL -->
@@ -776,7 +757,6 @@ try {
 
 
             </div>
-
 
 
             <!-- =================================
@@ -901,7 +881,6 @@ try {
                     </div>
 
 
-
                     <!-- UPDATE BUTTON -->
 
                     <div class="checkout-place-order">
@@ -924,9 +903,8 @@ try {
             </div>
 
 
-
             <!-- =================================
-                 ORDER TOTAL
+                ORDER TOTAL
             ================================== -->
 
             <div class="checkout-form-card">
@@ -959,7 +937,7 @@ try {
 
 
             <!-- =================================
-                 BACK TO ORDERS
+                BACK TO ORDERS
             ================================== -->
 
             <div class="checkout-place-order">
@@ -976,9 +954,8 @@ try {
             </div>
 
 
-
             <!-- =================================
-                 BACK TO DASHBOARD
+                BACK TO DASHBOARD
             ================================== -->
 
             <div class="checkout-place-order">

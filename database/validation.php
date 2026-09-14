@@ -4,16 +4,16 @@
 function validateRequired(string $value, string $label): ?string
 {
     return trim($value) === ''
-        ? "$label is required."
-        : null;
+    ? "$label is required."
+    : null;
 }
 
 
 function validateEmailFormat(string $value): ?string
 {
     return filter_var($value, FILTER_VALIDATE_EMAIL)
-        ? null
-        : "Enter a valid email address.";
+    ? null
+    : "Enter a valid email address.";
 }
 
 
@@ -49,8 +49,8 @@ function validatePasswordMatch(
 ): ?string {
 
     return $password === $confirmPassword
-        ? null
-        : "Passwords do not match.";
+    ? null
+    : "Passwords do not match.";
 }
 
 
@@ -68,8 +68,8 @@ function validateCustomerInput(array $post): array
 
 
     /*
-     * USERNAME
-     */
+    * USERNAME
+    */
 
     $usernameRequired = validateRequired(
         $username,
@@ -84,8 +84,8 @@ function validateCustomerInput(array $post): array
 
 
     /*
-     * EMAIL
-     */
+    * EMAIL
+    */
 
     $emailRequired = validateRequired(
         $email,
@@ -109,8 +109,8 @@ function validateCustomerInput(array $post): array
 
 
     /*
-     * PHONE NUMBER
-     */
+    * PHONE NUMBER
+    */
 
     $phoneRequired = validateRequired(
         $phone,
@@ -125,8 +125,8 @@ function validateCustomerInput(array $post): array
 
 
     /*
-     * PASSWORD
-     */
+    * PASSWORD
+    */
 
     $passwordRequired = validateRequired(
         $password,
@@ -150,8 +150,8 @@ function validateCustomerInput(array $post): array
 
 
     /*
-     * CONFIRM PASSWORD
-     */
+    * CONFIRM PASSWORD
+    */
 
     $confirmRequired = validateRequired(
         $confirmPassword,
@@ -178,8 +178,8 @@ function validateCustomerInput(array $post): array
 
 
     /*
-     * Return validation result
-     */
+    * Return validation result
+    */
 
     return [
 
@@ -196,6 +196,5 @@ function validateCustomerInput(array $post): array
             'password' => $password
 
         ]
-
     ];
 }
