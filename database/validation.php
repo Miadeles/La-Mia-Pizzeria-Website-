@@ -11,9 +11,24 @@ function validateRequired(string $value, string $label): ?string
 
 function validateEmailFormat(string $value): ?string
 {
-    return filter_var($value, FILTER_VALIDATE_EMAIL)
-    ? null
-    : "Enter a valid email address.";
+    if (
+        !filter_var($value, FILTER_VALIDATE_EMAIL) ||
+        !preg_match('/\.[A-Za-z]{2,}$/', $value)
+    ) {
+        return "Enter a valid email address.";
+    }
+
+    return null;
+}
+
+
+function validatePhoneNumber(string $value): ?string
+{
+    if (!preg_match('/^09[0-9]{9}$/', $value)) {
+        return "Enter a valid 11-digit Philippine mobile number.";
+    }
+
+    return null;
 }
 
 
@@ -118,9 +133,13 @@ function validateCustomerInput(array $post): array
     );
 
     if ($phoneRequired !== null) {
-
         $errors[] = $phoneRequired;
+    } else {
+        $phoneValidation = validatePhoneNumber($phone);
 
+        if ($phoneValidation !== null) {
+            $errors[] = $phoneValidation;
+        }
     }
 
 

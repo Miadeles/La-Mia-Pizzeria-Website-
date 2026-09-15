@@ -517,7 +517,7 @@ body {
 
     grid-template-columns: repeat(3, 1fr);
 
-    column-gap: px;
+    column-gap: 20px;
     row-gap: 50px;
 
     width: 100%;
@@ -606,22 +606,28 @@ body {
    RESPONSIVE PIZZA GRID
 ========================================= */
 
-@media (max-width: 900px) {
-
+@media (max-width:900px) {
     .pizza-grid {
-        grid-template-columns: repeat(2, 1fr);
-
-        max-width: 550px;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        max-width: 630px;
+        margin-left: auto;
+        margin-right: auto;
+        column-gap: 5px;
+        row-gap: 35px;
     }
 
+    .pizza-card {
+        width: 200px;
+        max-width: 100%;
+    }
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .pizza-grid {
         grid-template-columns: 1fr;
-
         max-width: 300px;
     }
 
@@ -1141,7 +1147,7 @@ body {
     position: absolute;
 
     top: 5%;
-    left: 37%;
+    left: 38%;
 
     color: #FFFFFF;
 
@@ -4744,6 +4750,9 @@ body {
     }
 
 }
+
+
+
 
 
 /* Make OpenStreetMap attribution small and unobtrusive */

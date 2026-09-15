@@ -75,6 +75,8 @@
                 city,
                 order_notes,
                 payment_method,
+                payment_status,
+                payment_reference,
                 total_amount,
                 order_status,
                 created_at
@@ -342,12 +344,12 @@
 
 
 
-                <!-- PAYMENT -->
+                <!-- PAYMENT METHOD -->
 
                 <div class="receipt-info-row">
 
                     <span>
-                        Payment
+                        Payment Method
                     </span>
 
 
@@ -371,8 +373,54 @@
                 </div>
 
 
-            </div>
+                <!-- PAYMENT STATUS -->
 
+                <div class="receipt-info-row">
+
+                    <span>
+                        Payment Status
+                    </span>
+
+
+                    <strong>
+
+                        <?= htmlspecialchars(
+                            $order['payment_status']
+                        ) ?>
+
+                    </strong>
+
+                </div>
+
+
+                <!-- PAYMENT REFERENCE -->
+
+                <?php if (
+                    trim(
+                        $order['payment_reference'] ?? ''
+                    ) !== ''
+                ): ?>
+
+                    <div class="receipt-info-row">
+
+                        <span>
+                            Payment Reference
+                        </span>
+
+
+                        <strong>
+
+                            <?= htmlspecialchars(
+                                $order['payment_reference']
+                            ) ?>
+
+                        </strong>
+
+                    </div>
+
+                <?php endif; ?>
+
+            </div>
 
             <!-- =================================
                 CUSTOMER INFORMATION
@@ -755,6 +803,150 @@
 
                 <?php endforeach; ?>
 
+
+            </div>
+
+
+            <!-- =================================
+                UPDATE PAYMENT STATUS
+            ================================= -->
+
+            <div class="checkout-form-card">
+
+                <h2>
+                    UPDATE PAYMENT STATUS
+                </h2>
+
+
+                <!-- CURRENT PAYMENT STATUS -->
+
+                <div class="receipt-info-row">
+
+                    <span>
+                        Current Payment Status
+                    </span>
+
+                    <strong>
+
+                        <?= htmlspecialchars(
+                            $order['payment_status']
+                        ) ?>
+
+                    </strong>
+
+                </div>
+
+
+                <!-- PAYMENT REFERENCE -->
+
+                <?php if (
+                    trim(
+                        $order['payment_reference'] ?? ''
+                    ) !== ''
+                ): ?>
+
+                    <div class="receipt-info-row">
+
+                        <span>
+                            Payment Reference
+                        </span>
+
+                        <strong>
+
+                            <?= htmlspecialchars(
+                                $order['payment_reference']
+                            ) ?>
+
+                        </strong>
+
+                    </div>
+
+                <?php endif; ?>
+
+
+                <!-- UPDATE PAYMENT FORM -->
+
+                <form
+                    action="update_payment_status.php"
+                    method="POST"
+                >
+
+
+                    <!-- ORDER ID -->
+
+                    <input
+                        type="hidden"
+                        name="order_id"
+                        value="<?= (int) $order['id'] ?>"
+                    >
+
+
+                    <!-- PAYMENT STATUS -->
+
+                    <div class="checkout-form-group">
+
+                        <label for="payment_status">
+
+                            Change Payment Status
+
+                        </label>
+
+
+                        <select
+                            id="payment_status"
+                            name="payment_status"
+                            required
+                        >
+
+                            <option
+                                value="Pending Verification"
+                                <?= $order['payment_status'] === 'Pending Verification'
+                                    ? 'selected'
+                                    : '' ?>
+                            >
+                                Pending Verification
+                            </option>
+
+
+                            <option
+                                value="Paid"
+                                <?= $order['payment_status'] === 'Paid'
+                                    ? 'selected'
+                                    : '' ?>
+                            >
+                                Paid
+                            </option>
+
+
+                            <option
+                                value="Rejected"
+                                <?= $order['payment_status'] === 'Rejected'
+                                    ? 'selected'
+                                    : '' ?>
+                            >
+                                Rejected
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- UPDATE BUTTON -->
+
+                    <div class="checkout-place-order">
+
+                        <button
+                            type="submit"
+                            id="place-order-btn"
+                        >
+                            UPDATE PAYMENT
+                        </button>
+
+                    </div>
+
+
+                </form>
 
             </div>
 

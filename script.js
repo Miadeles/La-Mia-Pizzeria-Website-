@@ -977,6 +977,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
+    PAYMENT METHOD
+    ========================================= */
+
+    const paymentReferenceSection =
+        document.getElementById("payment-reference-section");
+
+    const paymentReferenceInput =
+        document.getElementById("payment-reference");
+
+    const paymentMethodOptions =
+        document.querySelectorAll('input[name="payment_method"]');
+
+    if (
+        paymentReferenceSection &&
+        paymentReferenceInput &&
+        paymentMethodOptions.length > 0
+    ) {
+
+        paymentMethodOptions.forEach(function (option) {
+
+            option.addEventListener("change", function () {
+
+                if (this.value === "gcash") {
+
+                    paymentReferenceSection.style.display = "block";
+
+                    paymentReferenceInput.required = true;
+
+                } else {
+
+                    paymentReferenceSection.style.display = "none";
+
+                    paymentReferenceInput.required = false;
+
+                    paymentReferenceInput.value = "";
+
+                }
+
+            });
+
+        });
+
+    }
+
+
+    /* =========================================
     CHECKOUT CART SUBMISSION
     ========================================= */
 
@@ -995,6 +1041,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
             cartDataInput.value =
                 JSON.stringify(cart);
+
+
+            /* TEST PAYMENT REFERENCE */
+
+            const selectedPayment =
+                document.querySelector(
+                    'input[name="payment_method"]:checked'
+                );
+
+            const paymentReference =
+                document.getElementById("payment-reference");
+
+
+            console.log(
+                "Payment Method:",
+                selectedPayment ? selectedPayment.value : "NONE"
+            );
+
+            console.log(
+                "Payment Reference:",
+                paymentReference
+                    ? paymentReference.value
+                    : "INPUT NOT FOUND"
+            );
+
+            console.log(
+                "Cart Data:",
+                cartDataInput.value
+            );
 
         });
 

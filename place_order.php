@@ -49,7 +49,12 @@
 
     $paymentMethod = $_POST['payment_method'] ?? '';
 
+    $paymentReference = trim(
+        $_POST['payment_reference'] ?? ''
+    );
+
     $cartData = $_POST['cart_data'] ?? '';
+
 
 
     // =========================================
@@ -144,6 +149,22 @@
 
 
     // =========================================
+    // PAYMENT REFERENCE
+    // =========================================
+
+    if ($paymentMethod === 'gcash') {
+
+        if ($paymentReference === '') {
+
+            $errors[] =
+                'Payment Reference Number is required for Online Payment.';
+
+        }
+
+    }
+
+
+    // =========================================
     // CART VALIDATION
     // =========================================
 
@@ -186,8 +207,10 @@
 
             'order_notes' => $orderNotes,
 
-            'payment_method' => $paymentMethod
+            'payment_method' => $paymentMethod,
 
+            'payment_reference' => $paymentReference
+            
         ];
 
 
@@ -231,6 +254,16 @@
 
 
     // =========================================
+    // PAYMENT STATUS
+    // =========================================
+
+    $paymentStatus =
+        $paymentMethod === 'gcash'
+        ? 'Pending Verification'
+        : 'Unpaid';
+
+
+    // =========================================
     // SAVE ORDER AND ORDER ITEMS
     // =========================================
 
@@ -259,6 +292,8 @@
                 city,
                 order_notes,
                 payment_method,
+                payment_status,
+                payment_reference,
                 total_amount,
                 order_status
             )
@@ -275,6 +310,8 @@
                 :city,
                 :order_notes,
                 :payment_method,
+                :payment_status,
+                :payment_reference,
                 :total_amount,
                 'Pending'
             )
@@ -343,6 +380,21 @@
         $orderStmt->bindValue(
             ':payment_method',
             $paymentMethod
+        );
+
+        $orderStmt->bindValue(
+            ':payment_status',
+            $paymentStatus
+        );
+
+        $orderStmt->bindValue(
+            ':payment_reference',
+            $paymentReference !== ''
+                ? $paymentReference
+                : null,
+            $paymentReference !== ''
+                ? PDO::PARAM_STR
+                : PDO::PARAM_NULL
         );
 
         $orderStmt->bindValue(
@@ -559,7 +611,10 @@
                 $orderNotes,
 
             'payment_method' =>
-                $paymentMethod
+                $paymentMethod,
+
+            'payment_reference' =>
+                $paymentReference
 
         ];
 
@@ -664,6 +719,49 @@
                     </strong>
 
                 </div>
+
+
+                <?php if ($paymentMethod === 'gcash'): ?>
+
+                    <div class="receipt-info-row">
+
+                        <span>
+                            Payment Reference
+                        </span>
+
+                        <strong>
+                            <?= htmlspecialchars($paymentReference) ?>
+                        </strong>
+
+                    </div>
+
+                    <div class="receipt-info-row">
+
+                        <span>
+                            Payment Status
+                        </span>
+
+                        <strong>
+                            Pending Verification
+                        </strong>
+
+                    </div>
+
+                <?php else: ?>
+
+                    <div class="receipt-info-row">
+
+                        <span>
+                            Payment Status
+                        </span>
+
+                        <strong>
+                            Unpaid
+                        </strong>
+
+                    </div>
+
+                <?php endif; ?>
 
 
 

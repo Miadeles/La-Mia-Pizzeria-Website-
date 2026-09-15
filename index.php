@@ -518,7 +518,7 @@
                 </div>
 
                 <div class="customize-category">
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;MEATS</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEATS</span>
                 </div>
 
                 <div class="customize-category">

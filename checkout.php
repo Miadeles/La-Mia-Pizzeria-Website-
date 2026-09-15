@@ -472,14 +472,11 @@ session_start();
 
                 <div class="checkout-form-card payment-card">
 
-
                     <h2>
                         MODE OF PAYMENT
                     </h2>
 
-
                     <div class="order-type-options">
-
 
                         <!-- CASH -->
 
@@ -500,7 +497,6 @@ session_start();
                         </label>
 
 
-
                         <!-- ONLINE PAYMENT -->
 
                         <label class="radio-option">
@@ -517,12 +513,36 @@ session_start();
 
                         </label>
 
-
                     </div>
 
 
+                    <div
+                        class="checkout-form-group"
+                        id="payment-reference-section"
+                        style="display: none; margin-top: 20px;"
+                    >
+
+                        <label for="payment-reference">
+                            Payment Reference Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="payment-reference"
+                            name="payment_reference"
+                            placeholder="Enter your GCash reference number"
+                        >
+
+                        <small>
+                            Enter the reference number shown after your payment.
+                        </small>
+
+                    </div>
+
                 </div>
 
+
+                
 
 
                 <!-- =================================
