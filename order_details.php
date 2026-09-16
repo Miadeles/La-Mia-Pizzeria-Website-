@@ -134,26 +134,56 @@
         HEADER
     ================================== -->
 
-    <header class="checkout-header">
+    <header class="site-header">
+        <div class="header-container">
 
-        <div class="checkout-header-inner">
-
-            <a href="index.php">
+            <!-- LOGO -->
+            <a href="index.php" class="logo">
                 <img
                     src="images/logo-primary.png"
                     alt="La Mia Pizzeria"
                 >
             </a>
 
-            <a
-                href="my_orders.php"
-                class="checkout-back-link"
-            >
-                MY ORDERS
-            </a>
+            <!-- NAVIGATION -->
+            <nav class="main-navigation">
+                <a href="index.php">Home</a>
+                <a href="index.php#about">Our Story</a>
+                <a href="index.php#popular-pizza">Menu</a>
+                <a href="index.php#location">Contact</a>
+            </nav>
+
+            <!-- AUTH BUTTONS -->
+            <div class="auth-buttons">
+
+                <a href="cart.php" class="btn cart-btn">
+                    🛒 Cart
+                </a>
+
+                <?php if (isset($_SESSION['customer_id'])): ?>
+
+                    <a href="logout.php" class="btn login-btn">
+                        <span class="login-icon">👤</span>
+                        Logout
+                    </a>
+
+                <?php else: ?>
+
+                    <a href="login.php" class="btn login-btn">
+                        <span class="login-icon">👤</span>
+                        Login
+                    </a>
+
+                <?php endif; ?>
+
+                <a href="register.php" class="btn register-btn">
+                    <span class="register-icon">👤</span>
+                    Register
+                </a>
+
+            </div>
 
         </div>
-
     </header>
 
 
@@ -386,7 +416,7 @@
 
                             <?php if (!empty($item['toppings'])): ?>
 
-                                <div class="receipt-info-row">
+                                <div class="receipt-info-row toppings-row">
 
                                     <span>Custom Toppings</span>
 
@@ -441,7 +471,7 @@
 
                 <a
                     href="my_orders.php"
-                    class="place-order-btn"
+                    id="place-order-btn"
                 >
                     BACK TO MY ORDERS
                 </a>
@@ -452,18 +482,6 @@
 
     </main>
 
-
-    <!-- =================================
-        FOOTER
-    ================================== -->
-
-    <footer>
-
-        <p>
-            © <?= date('Y') ?> La Mia Pizzeria. All Rights Reserved.
-        </p>
-
-    </footer>
 
 </body>
 

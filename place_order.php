@@ -275,6 +275,136 @@
 
 
         // =====================================
+        // CHECK INVENTORY BEFORE PLACING ORDER
+        // =====================================
+
+        foreach ($cart as $item) {
+
+            $itemName =
+                trim($item['name'] ?? '');
+
+            $itemQuantity =
+                (int) ($item['quantity'] ?? 0);
+
+
+            // ---------------------------------
+            // CUSTOM PIZZA
+            // ---------------------------------
+            // Custom Pizza is not part of the
+            // regular pizza inventory.
+            // ---------------------------------
+
+            if (
+                isset($item['customization']) &&
+                is_array($item['customization'])
+            ) {
+
+                continue;
+
+            }
+
+
+            // ---------------------------------
+            // CHECK QUANTITY
+            // ---------------------------------
+
+            if ($itemQuantity <= 0) {
+
+                throw new RuntimeException(
+                    'Invalid quantity for ' . $itemName . '.'
+                );
+
+            }
+
+
+            // ---------------------------------
+            // LOCK INVENTORY ROW
+            // ---------------------------------
+
+            $inventorySql = "
+                SELECT
+                    id,
+                    stock,
+                    is_available
+                FROM inventory
+                WHERE pizza_name = :pizza_name
+                LIMIT 1
+                FOR UPDATE
+            ";
+
+
+            $inventoryStmt =
+                $pdo->prepare($inventorySql);
+
+
+            $inventoryStmt->bindValue(
+                ':pizza_name',
+                $itemName
+            );
+
+
+            $inventoryStmt->execute();
+
+
+            $inventory =
+                $inventoryStmt->fetch(
+                    PDO::FETCH_ASSOC
+                );
+
+
+            // ---------------------------------
+            // PIZZA NOT FOUND
+            // ---------------------------------
+
+            if (!$inventory) {
+
+                throw new RuntimeException(
+                    $itemName .
+                    ' is not available for ordering.'
+                );
+
+            }
+
+
+        // ---------------------------------
+        // PIZZA UNAVAILABLE
+        // ---------------------------------
+
+        if (
+            (int) $inventory['is_available'] !== 1
+        ) {
+
+            throw new RuntimeException(
+                $itemName .
+                ' is currently unavailable.'
+            );
+
+        }
+
+
+        // ---------------------------------
+        // NOT ENOUGH STOCK
+        // ---------------------------------
+
+        if (
+            $itemQuantity >
+            (int) $inventory['stock']
+        ) {
+
+            throw new RuntimeException(
+                'Not enough ' .
+                $itemName .
+                ' in stock. Only ' .
+                (int) $inventory['stock'] .
+                ' available.'
+            );
+
+        }
+
+    }
+
+
+        // =====================================
         // INSERT MAIN ORDER
         // =====================================
 
@@ -552,6 +682,58 @@
 
             $itemStmt->execute();
 
+
+            // =================================
+            // DEDUCT INVENTORY
+            // =================================
+            // Custom Pizza does not use the
+            // regular pizza inventory.
+            // =================================
+
+            if (
+                !(
+                    isset($item['customization']) &&
+                    is_array($item['customization'])
+                )
+            ) {
+
+                $inventoryUpdateSql = "
+                    UPDATE inventory
+                    SET
+                        stock = stock - :quantity,
+                        is_available =
+                            CASE
+                                WHEN stock - :quantity <= 0
+                                THEN 0
+                                ELSE 1
+                            END
+                    WHERE pizza_name = :pizza_name
+                ";
+
+
+                $inventoryUpdateStmt =
+                    $pdo->prepare(
+                        $inventoryUpdateSql
+                    );
+
+
+                $inventoryUpdateStmt->bindValue(
+                    ':quantity',
+                    $itemQuantity,
+                    PDO::PARAM_INT
+                );
+
+
+                $inventoryUpdateStmt->bindValue(
+                    ':pizza_name',
+                    $itemName
+                );
+
+
+                $inventoryUpdateStmt->execute();
+
+            }
+
         }
 
 
@@ -562,7 +744,7 @@
         $pdo->commit();
 
 
-    } catch (PDOException $e) {
+    } catch (Throwable $e) {
 
 
         // =====================================
@@ -580,7 +762,9 @@
 
 
         $_SESSION['checkout_errors'] = [
-            'Unable to save your order. Please try again.'
+            $e instanceof RuntimeException
+                ? $e->getMessage()
+                : 'Unable to save your order. Please try again.'
         ];
 
 

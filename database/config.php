@@ -7,19 +7,26 @@ function getConnection(): PDO
     $user = 'root';
     $pass = '';
 
-
     try {
+
         $pdo = new PDO(
             "mysql:host=$host;dbname=$db;charset=utf8mb4",
             $user,
             $pass
         );
 
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(
+            PDO::ATTR_ERRMODE,
+            PDO::ERRMODE_EXCEPTION
+        );
 
         return $pdo;
+
     } catch (PDOException $e) {
-        die("Connection failed: " . $e->getMessage());
+
+        die(
+            'DATABASE CONNECTION FAILED: ' .
+            $e->getMessage()
+        );
     }
-    
 }

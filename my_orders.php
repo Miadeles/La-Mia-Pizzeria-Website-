@@ -111,7 +111,7 @@
 </head>
 
 
-<body class="cart-page-body">
+<body class="cart-page-body my-orders-page">
 
 
     <main class="checkout-page">

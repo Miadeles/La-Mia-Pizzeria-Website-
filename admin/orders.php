@@ -87,16 +87,13 @@
         Manage Orders - La Mia Pizzeria
     </title>
 
-
-    <link
-        rel="stylesheet"
-        href="../style.css?v=7"
-    >
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="admin.css">
 
 </head>
 
 
-<body class="cart-page-body">
+<body class="cart-page-body admin-orders-page">
 
 
     <main class="checkout-page">

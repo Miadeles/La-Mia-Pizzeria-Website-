@@ -46,7 +46,11 @@ $databaseError = '';
 
 try {
 
+    $dashboardStart = microtime(true);
+
     $pdo = getConnection();
+
+    $connectionTime = microtime(true) - $dashboardStart;
 
 
     // -----------------------------------------
@@ -137,6 +141,8 @@ try {
 
     $totalCustomers = (int) $stmt->fetchColumn();
 
+    $dashboardTime = microtime(true) - $dashboardStart;
+
 
 } catch (PDOException $e) {
 
@@ -165,15 +171,15 @@ try {
     </title>
 
 
-    <link
-        rel="stylesheet"
-        href="../style.css?v=7"
-    >
+    
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="admin.css">
+
 
 </head>
 
 
-<body class="cart-page-body">
+<body class="cart-page-body admin-dashboard-page">
 
 
     <main class="checkout-page">
@@ -212,8 +218,14 @@ try {
 
 
             <!-- =================================
-                 DATABASE ERROR
+                DATABASE ERROR
             ================================== -->
+
+            <?php
+                echo '<!-- Dashboard database time: ' .
+                    $dashboardTime .
+                    ' seconds -->';
+            ?>
 
             <?php if ($databaseError !== ''): ?>
 
@@ -399,6 +411,41 @@ try {
                         id="place-order-btn"
                     >
                         MANAGE ORDERS
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                INVENTORY MANAGEMENT
+            ================================== -->
+
+            <div class="checkout-form-card">
+
+
+                <h2>
+                    INVENTORY MANAGEMENT
+                </h2>
+
+
+                <p>
+                    View and manage pizza inventory and availability.
+                </p>
+
+
+                <div class="checkout-place-order">
+
+
+                    <a
+                        href="inventory.php"
+                        id="place-order-btn"
+                    >
+                        MANAGE INVENTORY
                     </a>
 
 

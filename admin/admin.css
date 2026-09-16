@@ -1,0 +1,68 @@
+/* =========================================
+   ADMIN INVENTORY
+========================================= */
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.inventory-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+}
+
+.inventory-item .receipt-info-row {
+    margin-bottom: 15px;
+}
+
+.inventory-item .checkout-form-group {
+    margin-bottom: 15px;
+}
+
+.inventory-item .checkout-place-order {
+    margin-top: 10px;
+}
+
+.inventory-item #place-order-btn {
+    width: 100%;
+}
+
+.inventory-list-card {
+    width: 100%;
+}
+
+/* =========================================
+   INVENTORY MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+    .inventory-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.inventory-item .receipt-info-row span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* =========================================
+   ADMIN PAGE SPACING
+========================================= */
+
+.admin-dashboard-page .checkout-page {
+    padding-top: 25px;
+}
+
+.admin-orders-page .checkout-page {
+    padding-top: 25px;
+}
+
+.admin-order-details-page .checkout-page {
+    padding-top: 25px;
+}
