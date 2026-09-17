@@ -58,25 +58,34 @@
             <!-- CUSTOMER ACTIONS -->
             <div class="auth-buttons">
 
-                    <?php if (isset($_SESSION['customer_id'])): ?>
+                <?php if (isset($_SESSION['customer_id'])): ?>
 
                         <!-- CART -->
-                        <a href="cart.php" class="btn cart-btn">
-                            <span>🛒</span>
-                            Cart
-                        </a>
+                    <a href="cart.php" class="btn cart-btn">
+                        <span>🛒</span>
+                        Cart
+                    </a>
 
-                        <!-- MY ORDERS -->
-                        <a href="my_orders.php" class="btn my-orders-btn">
-                            <span class="login-icon">📋</span>
-                            My Orders
-                        </a>
 
-                        <!-- LOGOUT -->
-                        <a href="logout.php" class="btn logout-btn">
-                            <span class="login-icon">👤</span>
-                            Logout
-                        </a>
+                    <!-- MY ORDERS -->
+                    <a href="my_orders.php" class="btn my-orders-btn">
+                        <span class="login-icon">📋</span>
+                        My Orders
+                    </a>
+
+
+                    <!-- MY PROFILE -->
+                    <a href="profile.php" class="btn profile-btn">
+                        <span class="login-icon">👤</span>
+                        Profile
+                    </a>
+
+
+                    <!-- LOGOUT -->
+                    <a href="logout.php" class="btn logout-btn">
+                        <span class="login-icon">🚪</span>
+                        Logout
+                    </a>
 
                     <?php else: ?>
 

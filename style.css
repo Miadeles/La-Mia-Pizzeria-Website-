@@ -123,7 +123,7 @@ body {
     justify-content: center;
     gap: 7px;
 
-    padding:10px 20px;
+    padding: 10px 20px;
 
     border-radius: 7px;
 
@@ -135,7 +135,6 @@ body {
 
     transition: all 0.3s ease;
 }
-
 
 /* LOGIN */
 
@@ -168,6 +167,50 @@ body {
     border-color: #A61E1E;
 }
 
+/* PROFILE */
+
+/* PROFILE */
+
+.profile-btn {
+    color: #FFFFFF;
+    background-color: #3F6B3F;
+    border:  #3F6B3F;
+    padding: 0 20px;
+    height: 52px;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.profile-btn:hover {
+    background-color: #3F6B3F;
+    border-color: #3F6B3F;
+}
+
+
+
+/* ========================================
+   HEADER BUTTON SIZES
+======================================== */
+
+.cart-btn {
+    width: 104.125px;
+}
+
+.my-orders-btn {
+    width: 220px;
+}
+
+.profile-btn {
+    width: 104.125px;
+}
+
+.logout-btn {
+    width: 176px;
+}
+
 
 /* ICONS */
 
@@ -175,6 +218,8 @@ body {
 .register-icon {
     font-size: 15px;
 }
+
+
 
 
 /* ========================================
@@ -3693,6 +3738,8 @@ body {
     background: #3F6B3F;
     color: #ffffff;
     text-decoration: none;
+    width: 104.125px;
+
 }
 
 .cart-btn:hover {
@@ -3706,13 +3753,20 @@ body {
 
 .my-orders-btn {
     background: #3F6B3F;
-    color: #ffffff;
-    border: 2px solid #3F6B3F;
+    border-color: #3F6B3F;
+    color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    min-width: 140px;
+    box-sizing: border-box;
 }
 
+
 .my-orders-btn:hover {
-    background: #315631;
-    border-color: #315631;
+    background: #3F6B3F;
+    border-color: #3F6B3F;
 }
 
 
@@ -3724,6 +3778,7 @@ body {
     color: #FFFFFF;
     background-color: #C62828;
     border: 2px solid #C62828;
+    
 }
 
 .logout-btn:hover {
@@ -3739,14 +3794,15 @@ body {
 .cart-btn,
 .my-orders-btn,
 .logout-btn {
-    width: 140px;
+    width: 104.125px;
     height: 52px;
-    padding: 10px 12px;
+    padding: 8px 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     white-space: nowrap;
+
 }
 
 
